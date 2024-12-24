@@ -1,1 +1,1 @@
-# starlight-videos
+packages/starlight-videos/README.md
