@@ -1,5 +1,6 @@
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
+import starlightVideos from 'starlight-videos'
 
 export default defineConfig({
   integrations: [
@@ -12,6 +13,7 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/HiDeoo/starlight-videos/edit/main/docs/',
       },
+      plugins: [starlightVideos()],
       // TODO(HiDeoo)
       sidebar: [],
       social: {

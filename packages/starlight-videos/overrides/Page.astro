@@ -1,0 +1,18 @@
+---
+import Default from '@astrojs/starlight/components/Page.astro'
+import type { Props } from '@astrojs/starlight/props'
+
+const { entry } = Astro.props
+let { hasSidebar, toc } = Astro.props
+
+if (entry.data.video) {
+  entry.data = {
+    ...entry.data,
+    template: 'splash',
+  }
+  hasSidebar = false
+  toc = undefined
+}
+---
+
+<Default {...Astro.props} {hasSidebar} {entry} {toc}><slot /></Default>
