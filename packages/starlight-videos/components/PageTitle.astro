@@ -1,1 +1,9 @@
-<div>title</div>
+---
+import type { Props } from '@astrojs/starlight/props'
+
+import { isEntryWithVideo } from '../libs/video'
+
+const { entry } = Astro.props
+---
+
+{isEntryWithVideo(entry) && <div>video</div>}

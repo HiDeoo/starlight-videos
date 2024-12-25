@@ -13,6 +13,7 @@ export default function starlightVideosPlugin(): StarlightPlugin {
           components: {
             ...config.components,
             ...overrideStarlightComponent(config.components, logger, 'PageTitle'),
+            ...overrideStarlightComponent(config.components, logger, 'MarkdownContent'),
           },
         })
 
