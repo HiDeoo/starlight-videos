@@ -1,29 +1,32 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { getCollection, type CollectionEntry as AstroCollectionEntry } from 'astro:content'
 
 import type { AnyVideo, Collection, Collections, CollectionVideo, Video, Videos } from '../schemas'
 
 const anyVideoEntries = await getAnyVideoEntries()
 const videoEntries = anyVideoEntries.filter(isVideoEntry)
 
-export function isAnyVideoEntry(entry: CollectionEntry<'docs'>): entry is AnyVideoEntry {
+export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
   return entry.data.video !== undefined
 }
 
-function isVideoEntry(entry: CollectionEntry<'docs'>): entry is VideoEntry {
+function isVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is VideoEntry {
   return isAnyVideoEntry(entry) && entry.data.video.type === 'video'
 }
 
-export function isEntryWithVideo(entry: CollectionEntry<'docs'>): entry is EntryWithVideo {
-  return isAnyVideoEntry(entry) && (entry.data.video.type === 'video' || entry.data.video.type === 'collection-video')
+export function isCollectionEntry(entry: AstroCollectionEntry<'docs'>): entry is CollectionEntry {
+  return isAnyVideoEntry(entry) && entry.data.video.type === 'collection'
 }
 
-export function isEntryWithCustomContent(entry: CollectionEntry<'docs'>): entry is EntryWithCustomContent {
-  return (
-    isAnyVideoEntry(entry) &&
-    (entry.data.video.type === 'collection' ||
-      entry.data.video.type === 'videos' ||
-      entry.data.video.type === 'collections')
-  )
+export function isVideosEntry(entry: AstroCollectionEntry<'docs'>): entry is VideosEntry {
+  return isAnyVideoEntry(entry) && entry.data.video.type === 'videos'
+}
+
+export function isCollectionsEntry(entry: AstroCollectionEntry<'docs'>): entry is CollectionsEntry {
+  return isAnyVideoEntry(entry) && entry.data.video.type === 'collections'
+}
+
+export function isEntryWithVideo(entry: AstroCollectionEntry<'docs'>): entry is EntryWithVideo {
+  return isAnyVideoEntry(entry) && (entry.data.video.type === 'video' || entry.data.video.type === 'collection-video')
 }
 
 function getAnyVideoEntries(): Promise<AnyVideoEntry[]> {
@@ -34,14 +37,17 @@ function getAnyVideoEntries(): Promise<AnyVideoEntry[]> {
 }
 
 type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>
-type EntryWithCustomContent = VideoCollectionEntry<Collection | Videos | Collections>
 
 type VideoEntry = VideoCollectionEntry<Video>
+type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
+type CollectionEntry = VideoCollectionEntry<Collection>
+type VideosEntry = VideoCollectionEntry<Videos>
+type CollectionsEntry = VideoCollectionEntry<Collections>
 
 type AnyVideoEntry = VideoCollectionEntry<AnyVideo>
 
-type VideoCollectionEntry<T extends AnyVideo> = CollectionEntry<'docs'> & {
-  data: CollectionEntry<'docs'>['data'] & {
+type VideoCollectionEntry<T extends AnyVideo> = AstroCollectionEntry<'docs'> & {
+  data: AstroCollectionEntry<'docs'>['data'] & {
     video: T
   }
 }

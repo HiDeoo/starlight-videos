@@ -2,14 +2,18 @@
 import Default from '@astrojs/starlight/components/MarkdownContent.astro'
 import type { Props } from '@astrojs/starlight/props'
 
-import { isEntryWithCustomContent } from '../libs/video'
+import { isCollectionEntry, isCollectionsEntry, isVideosEntry } from '../libs/video'
 
 const { entry } = Astro.props
 ---
 
 {
-  isEntryWithCustomContent(entry) ? (
-    <div>CUSTOM</div>
+  isCollectionEntry(entry) ? (
+    <div>COLLECTION</div>
+  ) : isVideosEntry(entry) ? (
+    <div>VIDEOS</div>
+  ) : isCollectionsEntry(entry) ? (
+    <div>COLLECTIONS</div>
   ) : (
     <Default {...Astro.props}>
       <slot />
