@@ -1,6 +1,7 @@
 ---
 title: Test
-video: test
+video:
+  link: https://www.example.com
 ---
 
 Hello, world!

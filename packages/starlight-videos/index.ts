@@ -2,16 +2,25 @@ import { fileURLToPath } from 'node:url'
 
 import type { StarlightPlugin } from '@astrojs/starlight/types'
 
+import { overrideStarlightComponent } from './libs/starlight'
+
 export default function starlightVideosPlugin(): StarlightPlugin {
   return {
     name: 'starlight-videos',
     hooks: {
-      setup({ addIntegration }) {
+      setup({ addIntegration, config, logger, updateConfig }) {
+        updateConfig({
+          components: {
+            ...config.components,
+            ...overrideStarlightComponent(config.components, logger, 'PageTitle'),
+          },
+        })
+
         addIntegration({
           name: 'starlight-videos-integration',
           hooks: {
-            'astro:config:setup': ({ updateConfig }) => {
-              updateConfig({
+            'astro:config:setup': ({ updateConfig: updateAstroConfig }) => {
+              updateAstroConfig({
                 vite: {
                   resolve: {
                     alias: [

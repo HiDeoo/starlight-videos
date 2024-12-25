@@ -1,0 +1,12 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro'
+import type { Props } from '@astrojs/starlight/props'
+
+import StarlightVideosPageTitle from '../components/PageTitle.astro'
+import { isVideoEntry } from '../libs/video'
+
+const { entry } = Astro.props
+---
+
+<Default {...Astro.props}><slot /></Default>
+{isVideoEntry(entry) && <StarlightVideosPageTitle {...Astro.props} />}

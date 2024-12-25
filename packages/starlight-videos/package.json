@@ -7,6 +7,8 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
+    "./components/PageTitle.astro": "./components/PageTitle.astro",
+    "./overrides/PageTitle.astro": "./overrides/PageTitle.astro",
     "./schemas": "./schemas.ts",
     "./package.json": "./package.json"
   },
