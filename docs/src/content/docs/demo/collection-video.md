@@ -1,9 +1,9 @@
 ---
-title: Test Collection Video
+title: Collection Video
 video:
   type: collection-video
   link: https://www.example.com
   collection: astro
 ---
 
-Hello, world!
+This is a video in a collection.

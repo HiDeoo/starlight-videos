@@ -1,8 +1,8 @@
 ---
-title: Test Collection
+title: Collection
 video:
   type: collection
   collection: astro
 ---
 
-Hello, world!
+This is a collection (`astro`).
