@@ -1,0 +1,36 @@
+---
+interface Props {
+  description?: string | undefined
+  link: string
+  title: string
+}
+
+const { description, link, title } = Astro.props
+---
+
+<article>
+  <h2><a href={link}>{title}</a></h2>
+  {description && <p>{description}</p>}
+</article>
+
+<style>
+  article {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    position: relative;
+  }
+
+  h2 {
+    line-height: var(--sl-line-height-headings);
+    margin-block: 0;
+  }
+
+  a::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+</style>

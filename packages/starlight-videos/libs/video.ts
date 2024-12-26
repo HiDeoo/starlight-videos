@@ -15,8 +15,8 @@ export function getCollections(): CollectionEntry[] {
   return collectionEntries
 }
 
-export function getCollectioNVideos(collectionEntry: CollectionEntry): CollectionVideoEntry[] {
-  return collectionVideoEntries.filter((entry) => entry.data.video.collection === collectionEntry.data.video.collection)
+export function getCollectioNVideos(collection: Collection): CollectionVideoEntry[] {
+  return collectionVideoEntries.filter((entry) => entry.data.video.collection === collection.collection)
 }
 
 export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
@@ -58,7 +58,7 @@ type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>
 
 type VideoEntry = VideoCollectionEntry<Video>
 type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
-export type CollectionEntry = VideoCollectionEntry<Collection>
+type CollectionEntry = VideoCollectionEntry<Collection>
 type VideosEntry = VideoCollectionEntry<Videos>
 type CollectionsEntry = VideoCollectionEntry<Collections>
 

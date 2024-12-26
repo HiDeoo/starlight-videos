@@ -1,0 +1,11 @@
+<div><slot /></div>
+
+<style>
+  div {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    list-style: none;
+    padding: 0;
+  }
+</style>

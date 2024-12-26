@@ -5,6 +5,9 @@ const videoDefinitionSchema = z.object({
   type: z.literal('video'),
   // TODO(HiDeoo)
   link: z.string().url(),
+  // TODO(HiDeoo)
+  // TODO(HiDeoo) mention fallback
+  description: z.string().optional(),
 })
 
 const collectionVideoDefinitionSchema = z.object({

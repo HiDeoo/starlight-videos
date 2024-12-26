@@ -13,11 +13,11 @@ const { entry } = Astro.props
 
 {
   isCollectionEntry(entry) ? (
-    <Collection collectionEntry={entry} />
+    <Collection {...Astro.props} collection={entry.data.video} />
   ) : isVideosEntry(entry) ? (
-    <Videos />
+    <Videos {...Astro.props} />
   ) : isCollectionsEntry(entry) ? (
-    <Collections />
+    <Collections {...Astro.props} />
   ) : (
     <Default {...Astro.props}>
       <slot />
