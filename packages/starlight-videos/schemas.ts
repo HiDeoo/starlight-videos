@@ -8,6 +8,8 @@ const videoDefinitionSchema = z.object({
   // TODO(HiDeoo)
   // TODO(HiDeoo) mention fallback
   description: z.string().optional(),
+  // TODO(HiDeoo)
+  date: z.date().optional(),
 })
 
 const collectionVideoDefinitionSchema = z.object({
@@ -17,6 +19,8 @@ const collectionVideoDefinitionSchema = z.object({
   collection: z.string(),
   // TODO(HiDeoo)
   link: z.string().url(),
+  // TODO(HiDeoo)
+  order: z.number().optional(),
 })
 
 const collectionDefinitionSchema = z.object({
@@ -27,6 +31,8 @@ const collectionDefinitionSchema = z.object({
   // TODO(HiDeoo)
   // TODO(HiDeoo) mention fallback
   description: z.string().optional(),
+  // TODO(HiDeoo)
+  date: z.date().optional(),
 })
 
 const videosDefinitionSchema = z.object({

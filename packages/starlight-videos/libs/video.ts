@@ -4,26 +4,28 @@ import starlightConfig from 'virtual:starlight/user-config'
 
 import type { AnyVideo, Collection, Collections, CollectionVideo, Video, Videos } from '../schemas'
 
-import { DefaultLocale, type Locale } from './i18n'
+import { DefaultLocale, getLangFromLocale, type Locale } from './i18n'
 import { getLocaleFromPath, getPathWithLocale } from './path'
 
 const contentPath = `${starlightProject.srcDir.replace(starlightProject.root, '')}content/docs/`
 
 export async function getVideos(locale: Locale): Promise<VideoEntry[]> {
   const anyVideoEntries = await getAnyVideoEntries(locale)
-  return anyVideoEntries.filter(isVideoEntry)
+  return anyVideoEntries.filter(isVideoEntry).sort((a, b) => orderByDateThenTitle(a, b, locale))
 }
 
 export async function getCollections(locale: Locale): Promise<CollectionEntry[]> {
   const anyVideoEntries = await getAnyVideoEntries(locale)
-  return anyVideoEntries.filter(isCollectionEntry)
+  return anyVideoEntries.filter(isCollectionEntry).sort((a, b) => orderByDateThenTitle(a, b, locale))
 }
 
 export async function getCollectionVideos(collection: Collection, locale: Locale): Promise<CollectionVideoEntry[]> {
   const anyVideoEntries = await getAnyVideoEntries(locale)
-  return anyVideoEntries.filter(
-    (entry) => isCollectionVideoEntry(entry) && entry.data.video.collection === collection.collection,
-  ) as CollectionVideoEntry[]
+  return (
+    anyVideoEntries.filter(
+      (entry) => isCollectionVideoEntry(entry) && entry.data.video.collection === collection.collection,
+    ) as CollectionVideoEntry[]
+  ).sort((a, b) => orderByOrderThenTitle(a, b, locale))
 }
 
 export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
@@ -104,7 +106,32 @@ async function getAnyVideoEntries(locale: Locale): Promise<AnyVideoEntry[]> {
   return anyVideoEntries
 }
 
+function orderByDateThenTitle(a: EntryWithDate, b: EntryWithDate, locale: Locale): number {
+  const dateA = a.data.video.date
+  const dateB = b.data.video.date
+
+  if (dateA && dateB) {
+    if (dateA > dateB) return -1
+    if (dateA < dateB) return 1
+  }
+
+  return a.data.title.localeCompare(b.data.title, getLangFromLocale(locale))
+}
+
+function orderByOrderThenTitle(a: CollectionVideoEntry, b: CollectionVideoEntry, locale: Locale): number {
+  const orderA = a.data.video.order
+  const orderB = b.data.video.order
+
+  if (orderA && orderB) {
+    if (orderA > orderB) return 1
+    if (orderA < orderB) return -1
+  }
+
+  return a.data.title.localeCompare(b.data.title, getLangFromLocale(locale))
+}
+
 type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>
+type EntryWithDate = VideoCollectionEntry<Video | Collection>
 
 type VideoEntry = VideoCollectionEntry<Video>
 type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
