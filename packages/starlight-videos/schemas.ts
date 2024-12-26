@@ -24,6 +24,9 @@ const collectionDefinitionSchema = z.object({
   type: z.literal('collection'),
   // TODO(HiDeoo)
   collection: z.string(),
+  // TODO(HiDeoo)
+  // TODO(HiDeoo) mention fallback
+  description: z.string().optional(),
 })
 
 const videosDefinitionSchema = z.object({

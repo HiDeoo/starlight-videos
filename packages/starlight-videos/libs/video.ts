@@ -2,6 +2,7 @@ import { getCollection, type CollectionEntry as AstroCollectionEntry } from 'ast
 
 import type { AnyVideo, Collection, Collections, CollectionVideo, Video, Videos } from '../schemas'
 
+// TODO(HiDeoo) i18n (we need to filter by locale/fallback)
 const anyVideoEntries = await getAnyVideoEntries()
 const videoEntries = anyVideoEntries.filter(isVideoEntry)
 const collectionVideoEntries = anyVideoEntries.filter(isCollectionVideoEntry)

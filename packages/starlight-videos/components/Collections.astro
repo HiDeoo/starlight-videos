@@ -1,10 +1,25 @@
 ---
 import type { Props } from '@astrojs/starlight/props'
-import { Debug } from 'astro:components'
 
+import { getLink } from '../libs/links'
 import { getCollections } from '../libs/video'
+
+import Card from './Card.astro'
+import CardGrid from './CardGrid.astro'
+
+const { locale } = Astro.props
 
 const collections = getCollections()
 ---
 
-<Debug {collections} />
+<CardGrid>
+  {
+    collections.map((collection) => (
+      <Card
+        description={collection.data.video.description ?? collection.data.description}
+        link={getLink(collection.id, locale)}
+        title={collection.data.title}
+      />
+    ))
+  }
+</CardGrid>
