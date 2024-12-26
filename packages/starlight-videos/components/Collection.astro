@@ -1,0 +1,15 @@
+---
+import { Debug } from 'astro:components'
+
+import { type CollectionEntry, getCollectioNVideos } from '../libs/video'
+
+interface Props {
+  collectionEntry: CollectionEntry
+}
+
+const { collectionEntry } = Astro.props
+
+const collectionVideos = getCollectioNVideos(collectionEntry)
+---
+
+<Debug {collectionVideos} />

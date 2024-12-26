@@ -4,16 +4,20 @@ import type { Props } from '@astrojs/starlight/props'
 
 import { isCollectionEntry, isCollectionsEntry, isVideosEntry } from '../libs/video'
 
+import Collection from './Collection.astro'
+import Collections from './Collections.astro'
+import Videos from './Videos.astro'
+
 const { entry } = Astro.props
 ---
 
 {
   isCollectionEntry(entry) ? (
-    <div>COLLECTION</div>
+    <Collection collectionEntry={entry} />
   ) : isVideosEntry(entry) ? (
-    <div>VIDEOS</div>
+    <Videos />
   ) : isCollectionsEntry(entry) ? (
-    <div>COLLECTIONS</div>
+    <Collections />
   ) : (
     <Default {...Astro.props}>
       <slot />

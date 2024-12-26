@@ -4,6 +4,20 @@ import type { AnyVideo, Collection, Collections, CollectionVideo, Video, Videos 
 
 const anyVideoEntries = await getAnyVideoEntries()
 const videoEntries = anyVideoEntries.filter(isVideoEntry)
+const collectionVideoEntries = anyVideoEntries.filter(isCollectionVideoEntry)
+const collectionEntries = anyVideoEntries.filter(isCollectionEntry)
+
+export function getVideos(): VideoEntry[] {
+  return videoEntries
+}
+
+export function getCollections(): CollectionEntry[] {
+  return collectionEntries
+}
+
+export function getCollectioNVideos(collectionEntry: CollectionEntry): CollectionVideoEntry[] {
+  return collectionVideoEntries.filter((entry) => entry.data.video.collection === collectionEntry.data.video.collection)
+}
 
 export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
   return entry.data.video !== undefined
@@ -11,6 +25,10 @@ export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is A
 
 function isVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is VideoEntry {
   return isAnyVideoEntry(entry) && entry.data.video.type === 'video'
+}
+
+function isCollectionVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is CollectionVideoEntry {
+  return isAnyVideoEntry(entry) && entry.data.video.type === 'collection-video'
 }
 
 export function isCollectionEntry(entry: AstroCollectionEntry<'docs'>): entry is CollectionEntry {
@@ -40,7 +58,7 @@ type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>
 
 type VideoEntry = VideoCollectionEntry<Video>
 type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
-type CollectionEntry = VideoCollectionEntry<Collection>
+export type CollectionEntry = VideoCollectionEntry<Collection>
 type VideosEntry = VideoCollectionEntry<Videos>
 type CollectionsEntry = VideoCollectionEntry<Collections>
 

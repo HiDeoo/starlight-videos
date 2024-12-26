@@ -1,0 +1,9 @@
+---
+import { Debug } from 'astro:components'
+
+import { getVideos } from '../libs/video'
+
+const videos = getVideos()
+---
+
+<Debug {videos} />

@@ -1,0 +1,9 @@
+---
+import { Debug } from 'astro:components'
+
+import { getCollections } from '../libs/video'
+
+const collections = getCollections()
+---
+
+<Debug {collections} />
