@@ -1,7 +1,7 @@
 ---
 import type { Props } from '@astrojs/starlight/props'
 
-import { getLink } from '../libs/links'
+import { getEntryPath } from '../libs/path'
 import { getVideos } from '../libs/video'
 
 import Card from './Card.astro'
@@ -9,7 +9,7 @@ import CardGrid from './CardGrid.astro'
 
 const { locale } = Astro.props
 
-const videos = getVideos()
+const videos = await getVideos(locale)
 ---
 
 <CardGrid>
@@ -17,7 +17,7 @@ const videos = getVideos()
     videos.map((video) => (
       <Card
         description={video.data.video.description ?? video.data.description}
-        link={getLink(video.id, locale)}
+        link={getEntryPath(video.id, locale)}
         title={video.data.title}
       />
     ))

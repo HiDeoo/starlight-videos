@@ -1,23 +1,29 @@
-import { getCollection, type CollectionEntry as AstroCollectionEntry } from 'astro:content'
+import { getCollection, getEntry, type CollectionEntry as AstroCollectionEntry } from 'astro:content'
+import starlightProject from 'virtual:starlight/project-context'
+import starlightConfig from 'virtual:starlight/user-config'
 
 import type { AnyVideo, Collection, Collections, CollectionVideo, Video, Videos } from '../schemas'
 
-// TODO(HiDeoo) i18n (we need to filter by locale/fallback)
-const anyVideoEntries = await getAnyVideoEntries()
-const videoEntries = anyVideoEntries.filter(isVideoEntry)
-const collectionVideoEntries = anyVideoEntries.filter(isCollectionVideoEntry)
-const collectionEntries = anyVideoEntries.filter(isCollectionEntry)
+import { DefaultLocale, type Locale } from './i18n'
+import { getLocaleFromPath, getPathWithLocale } from './path'
 
-export function getVideos(): VideoEntry[] {
-  return videoEntries
+const contentPath = `${starlightProject.srcDir.replace(starlightProject.root, '')}content/docs/`
+
+export async function getVideos(locale: Locale): Promise<VideoEntry[]> {
+  const anyVideoEntries = await getAnyVideoEntries(locale)
+  return anyVideoEntries.filter(isVideoEntry)
 }
 
-export function getCollections(): CollectionEntry[] {
-  return collectionEntries
+export async function getCollections(locale: Locale): Promise<CollectionEntry[]> {
+  const anyVideoEntries = await getAnyVideoEntries(locale)
+  return anyVideoEntries.filter(isCollectionEntry)
 }
 
-export function getCollectioNVideos(collection: Collection): CollectionVideoEntry[] {
-  return collectionVideoEntries.filter((entry) => entry.data.video.collection === collection.collection)
+export async function getCollectionVideos(collection: Collection, locale: Locale): Promise<CollectionVideoEntry[]> {
+  const anyVideoEntries = await getAnyVideoEntries(locale)
+  return anyVideoEntries.filter(
+    (entry) => isCollectionVideoEntry(entry) && entry.data.video.collection === collection.collection,
+  ) as CollectionVideoEntry[]
 }
 
 export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
@@ -48,11 +54,54 @@ export function isEntryWithVideo(entry: AstroCollectionEntry<'docs'>): entry is 
   return isAnyVideoEntry(entry) && (entry.data.video.type === 'video' || entry.data.video.type === 'collection-video')
 }
 
-function getAnyVideoEntries(): Promise<AnyVideoEntry[]> {
-  return getCollection('docs', (entry) => {
-    if (import.meta.env.MODE === 'production' && entry.data.draft) return false
-    return isAnyVideoEntry(entry)
-  }) as Promise<AnyVideoEntry[]>
+async function getAnyVideoEntries(locale: Locale): Promise<AnyVideoEntry[]> {
+  const docEntries = await getCollection('docs')
+  const anyVideoEntries: AnyVideoEntry[] = []
+
+  for (const entry of docEntries) {
+    if (!entry.filePath) continue
+    if (import.meta.env.MODE === 'production' && entry.data.draft) continue
+    if (!isAnyVideoEntry(entry)) continue
+
+    // If the site is not multilingual, collect all entries.
+    if (!starlightConfig.isMultilingual) {
+      anyVideoEntries.push(entry)
+      continue
+    }
+
+    const filePath = entry.filePath.replace(contentPath, '')
+    const entryLocale = getLocaleFromPath(filePath)
+
+    // If the entry has the same locale as the current one, collect it.
+    if (entryLocale === locale) {
+      anyVideoEntries.push(entry)
+      continue
+    }
+
+    // If the entry does not use the default locale, skip it.
+    if (entryLocale !== DefaultLocale) continue
+
+    // Override `console.warn()` to silence logging when a localized entry is not found.
+    const warn = console.warn
+    console.warn = () => undefined
+
+    // Check if the entry has a corresponding locale entry.
+    try {
+      const localizedEntry = await getEntry('docs', getPathWithLocale(entry.id, locale))
+      if (!localizedEntry) throw new Error('Unavailable localized entry.')
+      if (localizedEntry.data.draft === true) throw new Error('Draft localized entry.')
+      if (!isAnyVideoEntry(localizedEntry)) throw new Error('Invalid localized entry.')
+      // If the entry has a corresponding locale entry, it'll be collected automatically during the iteration.
+    } catch {
+      // If the entry does not have a corresponding locale entry, collect it as a fallback.
+      anyVideoEntries.push(entry)
+    }
+
+    // Restore the original `console.warn()` implementation.
+    console.warn = warn
+  }
+
+  return anyVideoEntries
 }
 
 type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>

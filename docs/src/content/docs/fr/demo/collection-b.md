@@ -1,9 +1,9 @@
 ---
-title: Collection
+title: Collection B (fr)
 video:
   type: collection
-  collection: astro
+  collection: b
   description: This is a collection.
 ---
 
-This is a collection (`astro`).
+This is a collection (`b`).

@@ -1,9 +1,9 @@
 ---
-title: Collection Video
+title: Collection Video B
 video:
   type: collection-video
   link: https://www.example.com
-  collection: astro
+  collection: b
 ---
 
 This is a video in a collection.

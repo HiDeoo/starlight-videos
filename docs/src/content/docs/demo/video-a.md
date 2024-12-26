@@ -1,5 +1,5 @@
 ---
-title: Video
+title: Video A
 video:
   type: video
   link: https://www.example.com

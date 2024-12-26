@@ -19,5 +19,3 @@ export function overrideStarlightComponent(
     [component]: `starlight-videos/overrides/${component}.astro`,
   }
 }
-
-export type Locale = string | undefined
