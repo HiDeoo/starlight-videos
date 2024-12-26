@@ -12,8 +12,10 @@ export default function starlightVideosPlugin(): StarlightPlugin {
         updateConfig({
           components: {
             ...config.components,
-            ...overrideStarlightComponent(config.components, logger, 'PageTitle'),
+            ...overrideStarlightComponent(config.components, logger, 'DraftContentNotice'),
+            ...overrideStarlightComponent(config.components, logger, 'FallbackContentNotice'),
             ...overrideStarlightComponent(config.components, logger, 'MarkdownContent'),
+            ...overrideStarlightComponent(config.components, logger, 'PageTitle'),
           },
         })
 

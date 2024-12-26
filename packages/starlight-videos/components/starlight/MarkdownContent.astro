@@ -2,11 +2,11 @@
 import Default from '@astrojs/starlight/components/MarkdownContent.astro'
 import type { Props } from '@astrojs/starlight/props'
 
-import { isCollectionEntry, isCollectionsEntry, isVideosEntry } from '../libs/video'
+import { isCollectionEntry, isCollectionsEntry, isVideosEntry } from '../../libs/video'
 
-import Collection from './Collection.astro'
-import Collections from './Collections.astro'
-import Videos from './Videos.astro'
+import Collection from '../Collection.astro'
+import Collections from '../Collections.astro'
+import Videos from '../Videos.astro'
 
 const { entry } = Astro.props
 ---
