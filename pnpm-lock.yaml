@@ -68,6 +68,9 @@ importers:
       '@astrojs/starlight':
         specifier: '>=0.30.0'
         version: 0.30.3(astro@5.1.1(jiti@2.4.2)(rollup@4.29.1)(typescript@5.7.2)(yaml@2.6.1))
+      iso8601-duration:
+        specifier: ^2.1.2
+        version: 2.1.2
 
 packages:
 
@@ -2374,6 +2377,9 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  iso8601-duration@2.1.2:
+    resolution: {integrity: sha512-yXteYUiKv6x8seaDzyBwnZtPpmx766KfvQuaVNyPifYOjmPdOo3ajd4phDNa7Y5mTQGnXsNEcXFtVun1FjYXxQ==}
 
   iterator.prototype@1.1.4:
     resolution: {integrity: sha512-x4WH0BWmrMmg4oHHl+duwubhrvczGlyuGAZu3nvrf0UXOfPu8IhZObFEr7DE/iv01YgVZrsOiRcqw2srkKEDIA==}
@@ -6718,6 +6724,8 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
+
+  iso8601-duration@2.1.2: {}
 
   iterator.prototype@1.1.4:
     dependencies:

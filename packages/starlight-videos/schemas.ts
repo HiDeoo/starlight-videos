@@ -1,11 +1,24 @@
 import { z } from 'astro/zod'
+import { parse, toSeconds } from 'iso8601-duration'
 
 const baseVideoSchema = z.object({
   // TODO(HiDeoo)
   link: z.string().url(),
   // TODO(HiDeoo)
-  // TODO(HiDeoo) in seconds
-  duration: z.number(),
+  // TODO(HiDeoo) in seconds or ISO 8601 duration
+  duration: z.union([z.number(), z.string()]).transform((value, context) => {
+    if (typeof value === 'number') return value
+
+    try {
+      return toSeconds(parse(value))
+    } catch {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Invalid duration format',
+      })
+      return z.NEVER
+    }
+  }),
   // TODO(HiDeoo)
   difficulty: z.string().optional(),
   // TODO(HiDeoo)

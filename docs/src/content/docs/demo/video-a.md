@@ -3,7 +3,7 @@ title: A Video A
 video:
   type: video
   link: https://www.youtube.com/watch?v=5u0Ds7wzUeI&t=1s
-  duration: 3000
+  duration: P3Y6M4DT12H30M5S
   description: This is a video (not in a collection).
 ---
 
