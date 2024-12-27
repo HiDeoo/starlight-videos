@@ -3,6 +3,7 @@ title: Collection Video A
 video:
   type: collection-video
   link: https://www.example.com
+  duration: 3000
   collection: a
 ---
 

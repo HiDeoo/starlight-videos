@@ -1,10 +1,16 @@
 import { z } from 'astro/zod'
 
-const videoDefinitionSchema = z.object({
-  // TODO(HiDeoo)
-  type: z.literal('video'),
+const baseVideoSchema = z.object({
   // TODO(HiDeoo)
   link: z.string().url(),
+  // TODO(HiDeoo)
+  // TODO(HiDeoo) in seconds
+  duration: z.number(),
+})
+
+const videoDefinitionSchema = baseVideoSchema.extend({
+  // TODO(HiDeoo)
+  type: z.literal('video'),
   // TODO(HiDeoo)
   // TODO(HiDeoo) mention fallback
   description: z.string().optional(),
@@ -12,13 +18,11 @@ const videoDefinitionSchema = z.object({
   date: z.date().optional(),
 })
 
-const collectionVideoDefinitionSchema = z.object({
+const collectionVideoDefinitionSchema = baseVideoSchema.extend({
   // TODO(HiDeoo)
   type: z.literal('collection-video'),
   // TODO(HiDeoo)
   collection: z.string(),
-  // TODO(HiDeoo)
-  link: z.string().url(),
   // TODO(HiDeoo)
   order: z.number().optional(),
 })

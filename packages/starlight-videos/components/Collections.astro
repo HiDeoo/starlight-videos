@@ -2,10 +2,11 @@
 import type { Props } from '@astrojs/starlight/props'
 
 import { getEntryPath } from '../libs/path'
-import { getCollections } from '../libs/video'
+import { getCollections, getCollectionVideos } from '../libs/video'
 
 import Card from './Card.astro'
 import CardGrid from './CardGrid.astro'
+import Duration from './Duration.astro'
 
 const { locale } = Astro.props
 
@@ -14,12 +15,21 @@ const collections = await getCollections(locale)
 
 <CardGrid>
   {
-    collections.map((collection) => (
-      <Card
-        description={collection.data.video.description ?? collection.data.description}
-        link={getEntryPath(collection.id, locale)}
-        title={collection.data.title}
-      />
-    ))
+    collections.map(async (collection) => {
+      const collectionVideos = await getCollectionVideos(collection.data.video, locale)
+      const durations = collectionVideos.map((video) => video.data.video.duration)
+
+      return (
+        <Fragment>
+          <Card
+            description={collection.data.video.description ?? collection.data.description}
+            link={getEntryPath(collection.id, locale)}
+            title={collection.data.title}
+          >
+            <Duration value={durations} />
+          </Card>
+        </Fragment>
+      )
+    })
   }
 </CardGrid>

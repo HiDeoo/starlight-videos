@@ -6,6 +6,7 @@ import { getVideos } from '../libs/video'
 
 import Card from './Card.astro'
 import CardGrid from './CardGrid.astro'
+import Duration from './Duration.astro'
 
 const { locale } = Astro.props
 
@@ -19,7 +20,9 @@ const videos = await getVideos(locale)
         description={video.data.video.description ?? video.data.description}
         link={getEntryPath(video.id, locale)}
         title={video.data.title}
-      />
+      >
+        <Duration value={video.data.video.duration} />
+      </Card>
     ))
   }
 </CardGrid>
