@@ -28,6 +28,10 @@ export async function getCollectionVideos(collection: Collection, locale: Locale
   ).sort((a, b) => orderByOrderThenTitle(a, b, locale))
 }
 
+export function getCollectionFromCollectionVideo(collectionVideo: CollectionVideo): Collection {
+  return { type: 'collection', collection: collectionVideo.collection }
+}
+
 export function isAnyVideoEntry(entry: AstroCollectionEntry<'docs'>): entry is AnyVideoEntry {
   return entry.data.video !== undefined
 }

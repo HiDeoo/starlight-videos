@@ -1,11 +1,13 @@
 ---
 import { YouTube } from '@astro-community/astro-embed-youtube'
+import type { Props as StarlightProps } from '@astrojs/starlight/props'
 
 import type { CollectionVideo, Video } from '../schemas'
 
 import Difficulty from './Difficulty.astro'
+import VideoCollectionVideos from './VideoCollectionVideos.astro'
 
-interface Props {
+interface Props extends StarlightProps {
   video: Video | CollectionVideo
 }
 
@@ -17,6 +19,7 @@ const { video } = Astro.props
     <YouTube id={video.link} />
   </div>
   {video.difficulty && <Difficulty value={video.difficulty} />}
+  {video.type === 'collection-video' && <VideoCollectionVideos {...Astro.props} collectionVideo={video} />}
   {
     video.actions.length > 0 && (
       <div>

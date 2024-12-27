@@ -13,4 +13,4 @@ const { entry, isFallback } = Astro.props
 {entry.data.draft && <DraftContentNotice {...Astro.props} />}
 {isFallback && <FallbackContentNotice {...Astro.props} />}
 
-{isEntryWithVideo(entry) && <Video video={entry.data.video} />}
+{isEntryWithVideo(entry) && <Video {...Astro.props} video={entry.data.video} />}
