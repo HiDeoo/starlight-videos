@@ -1,9 +1,10 @@
 ---
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
-import { Debug } from 'astro:components'
 
 import { getCollectionVideos } from '../libs/video'
 import type { Collection } from '../schemas'
+
+import CollectionVideos from './CollectionVideos.astro'
 
 interface Props extends StarlightProps {
   collection: Collection
@@ -14,4 +15,6 @@ const { collection, locale } = Astro.props
 const collectionVideos = await getCollectionVideos(collection, locale)
 ---
 
-<Debug {collectionVideos} />
+<CollectionVideos {...Astro.props} collectionVideos={collectionVideos} />
+
+<slot />

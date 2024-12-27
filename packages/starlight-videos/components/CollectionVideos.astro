@@ -1,0 +1,28 @@
+---
+import type { Props as StarlightProps } from '@astrojs/starlight/props'
+
+import { getEntryPath } from '../libs/path'
+import type { CollectionVideoEntry } from '../libs/video'
+
+interface Props extends StarlightProps {
+  collectionVideos: CollectionVideoEntry[]
+}
+
+const { collectionVideos, locale } = Astro.props
+---
+
+<ul>
+  {
+    collectionVideos.map((video) => (
+      <li>
+        <a href={getEntryPath(video.id, locale)}>{video.data.title}</a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    border: 1px solid red;
+  }
+</style>

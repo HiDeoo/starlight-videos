@@ -134,7 +134,7 @@ type EntryWithVideo = VideoCollectionEntry<Video | CollectionVideo>
 type EntryWithDate = VideoCollectionEntry<Video | Collection>
 
 type VideoEntry = VideoCollectionEntry<Video>
-type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
+export type CollectionVideoEntry = VideoCollectionEntry<CollectionVideo>
 type CollectionEntry = VideoCollectionEntry<Collection>
 type VideosEntry = VideoCollectionEntry<Videos>
 type CollectionsEntry = VideoCollectionEntry<Collections>
