@@ -1,4 +1,6 @@
 ---
+import { YouTube } from '@astro-community/astro-embed-youtube'
+
 import type { CollectionVideo, Video } from '../schemas'
 
 import Difficulty from './Difficulty.astro'
@@ -11,7 +13,9 @@ const { video } = Astro.props
 ---
 
 <div>
-  <div>video</div>
+  <div>
+    <YouTube id={video.link} />
+  </div>
   {video.difficulty && <Difficulty value={video.difficulty} />}
   {
     video.actions.length > 0 && (

@@ -21,6 +21,9 @@
   "scripts": {
     "lint": "eslint . --cache --max-warnings=0"
   },
+  "dependencies": {
+    "@astro-community/astro-embed-youtube": "^0.5.6"
+  },
   "peerDependencies": {
     "@astrojs/starlight": ">=0.30.0"
   },
