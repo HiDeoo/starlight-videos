@@ -2,7 +2,7 @@
 import type { Props } from '@astrojs/starlight/props'
 
 import { isEntryWithVideo } from '../../libs/video'
-import Difficulty from '../Difficulty.astro'
+import Video from '../Video.astro'
 
 import DraftContentNotice from './DraftContentNotice.astro'
 import FallbackContentNotice from './FallbackContentNotice.astro'
@@ -13,11 +13,4 @@ const { entry, isFallback } = Astro.props
 {entry.data.draft && <DraftContentNotice {...Astro.props} />}
 {isFallback && <FallbackContentNotice {...Astro.props} />}
 
-{
-  isEntryWithVideo(entry) && (
-    <div>
-      <div>video</div>
-      {entry.data.video.difficulty && <Difficulty value={entry.data.video.difficulty} />}
-    </div>
-  )
-}
+{isEntryWithVideo(entry) && <Video video={entry.data.video} />}

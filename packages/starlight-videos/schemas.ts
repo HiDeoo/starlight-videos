@@ -8,6 +8,20 @@ const baseVideoSchema = z.object({
   duration: z.number(),
   // TODO(HiDeoo)
   difficulty: z.string().optional(),
+  // TODO(HiDeoo)
+  actions: z
+    .object({
+      // TODO(HiDeoo)
+      text: z.string(),
+      // TODO(HiDeoo)
+      link: z.string(),
+      // TODO(HiDeoo)
+      variant: z.enum(['primary', 'secondary', 'minimal']).default('primary'),
+      // TODO(HiDeoo)
+      icon: z.string().optional(),
+    })
+    .array()
+    .default([]),
 })
 
 const videoDefinitionSchema = baseVideoSchema.extend({

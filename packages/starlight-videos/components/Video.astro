@@ -1,0 +1,26 @@
+---
+import type { CollectionVideo, Video } from '../schemas'
+
+import Difficulty from './Difficulty.astro'
+
+interface Props {
+  video: Video | CollectionVideo
+}
+
+const { video } = Astro.props
+---
+
+<div>
+  <div>video</div>
+  {video.difficulty && <Difficulty value={video.difficulty} />}
+  {
+    video.actions.length > 0 && (
+      <div>
+        Actions:
+        {video.actions.map((action) => (
+          <a href={action.link}>{action.text}</a>
+        ))}
+      </div>
+    )
+  }
+</div>
