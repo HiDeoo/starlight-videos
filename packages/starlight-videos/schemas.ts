@@ -32,6 +32,8 @@ const baseVideoSchema = z.object({
       variant: z.enum(['primary', 'secondary', 'minimal']).default('primary'),
       // TODO(HiDeoo)
       icon: z.string().optional(),
+      // TODO(HiDeoo)
+      iconPlacement: z.enum(['start', 'end']).default('start'),
     })
     .array()
     .default([]),

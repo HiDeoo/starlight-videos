@@ -1,6 +1,8 @@
 ---
 import { YouTube } from '@astro-community/astro-embed-youtube'
+import { LinkButton } from '@astrojs/starlight/components'
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
+import type { ComponentProps } from 'astro/types'
 
 import type { CollectionVideo, Video } from '../schemas'
 
@@ -16,24 +18,72 @@ const { video } = Astro.props
 // TODO(HiDeoo) Youtube playlabel i18n
 ---
 
-<div>
+<div class="starlight-videos-video">
   <YouTube id={video.link} posterQuality="max" />
-  {video.difficulty && <Difficulty value={video.difficulty} />}
   {video.type === 'collection-video' && <VideoCollectionVideos {...Astro.props} collectionVideo={video} />}
-  {
-    video.actions.length > 0 && (
-      <div>
-        Actions:
-        {video.actions.map((action) => (
-          <a href={action.link}>{action.text}</a>
-        ))}
-      </div>
-    )
-  }
+  <div class="starlight-videos-video-meta">
+    {video.difficulty && <Difficulty value={video.difficulty} />}
+    {
+      video.actions.length > 0 && (
+        <div class="starlight-videos-video-meta-actions">
+          {video.actions.map((action) => (
+            <LinkButton
+              href={action.link}
+              icon={action.icon as ComponentProps<typeof LinkButton>['icon']}
+              iconPlacement={action.iconPlacement}
+              variant={action.variant}
+            >
+              {action.text}
+            </LinkButton>
+          ))}
+        </div>
+      )
+    }
+  </div>
 </div>
 
 <style>
-  div :global(lite-youtube) {
+  .starlight-videos-video {
+    background-attachment: red;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .starlight-videos-video :global(lite-youtube) {
     max-width: 100%;
+  }
+
+  .starlight-videos-video-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .starlight-videos-video-meta-actions {
+    display: contents;
+  }
+
+  @media (min-width: 40rem) {
+    .starlight-videos-video-meta {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .starlight-videos-video-meta-actions {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .starlight-videos-video-meta-actions :global(a) {
+    align-self: flex-start;
+  }
+
+  @media (min-width: 50rem) {
+    .starlight-videos-video-meta-actions :global(a) {
+      padding-block: 0.625rem;
+    }
   }
 </style>
