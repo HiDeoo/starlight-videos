@@ -12,12 +12,12 @@ interface Props extends StarlightProps {
 }
 
 const { video } = Astro.props
+
+// TODO(HiDeoo) Youtube playlabel i18n
 ---
 
 <div>
-  <div>
-    <YouTube id={video.link} />
-  </div>
+  <YouTube id={video.link} posterQuality="max" />
   {video.difficulty && <Difficulty value={video.difficulty} />}
   {video.type === 'collection-video' && <VideoCollectionVideos {...Astro.props} collectionVideo={video} />}
   {
@@ -31,3 +31,9 @@ const { video } = Astro.props
     )
   }
 </div>
+
+<style>
+  div :global(lite-youtube) {
+    max-width: 100%;
+  }
+</style>
