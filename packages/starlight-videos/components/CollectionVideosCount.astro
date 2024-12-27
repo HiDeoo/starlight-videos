@@ -1,0 +1,11 @@
+---
+import type { CollectionVideoEntry } from '../libs/video'
+
+interface Props {
+  collectionVideos: CollectionVideoEntry[]
+}
+
+const { collectionVideos } = Astro.props
+---
+
+<div>Videos: {collectionVideos.length}</div>

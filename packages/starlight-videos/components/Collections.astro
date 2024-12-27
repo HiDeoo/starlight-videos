@@ -6,6 +6,7 @@ import { getCollections, getCollectionVideos } from '../libs/video'
 
 import Card from './Card.astro'
 import CardGrid from './CardGrid.astro'
+import CollectionVideosCount from './CollectionVideosCount.astro'
 import Duration from './Duration.astro'
 
 const { locale } = Astro.props
@@ -23,6 +24,7 @@ const collections = await getCollections(locale)
         <Fragment>
           <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
             <Duration value={durations} />
+            <CollectionVideosCount {collectionVideos} />
           </Card>
         </Fragment>
       )
