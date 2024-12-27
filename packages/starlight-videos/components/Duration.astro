@@ -1,4 +1,6 @@
 ---
+import { Icon } from '@astrojs/starlight/components'
+
 import type { CollectionVideo, Video } from '../schemas'
 
 type Duration = (Video | CollectionVideo)['duration']
@@ -8,6 +10,22 @@ interface Props {
 }
 
 const { value } = Astro.props
+
+const durationInSeconds = Array.isArray(value) ? value.reduce((acc, duration) => acc + duration, 0) : value
+// TODO(HiDeoo) Format to hours if duration is greater than 60 minutes
+const durationInMinutes = Math.floor(durationInSeconds / 60)
+// TODO(HiDeoo) i18n duration
+
+// TODO(HiDeoo) sr-only i18n description or icon label
 ---
 
-<div>Duration: {Array.isArray(value) ? value.join(', ') : value}</div>
+<div><Icon name="seti:clock" size="0.75rem" />{durationInMinutes}</div>
+
+<style>
+  div {
+    align-items: center;
+    display: flex;
+    gap: 0.3125rem;
+    margin-left: auto;
+  }
+</style>

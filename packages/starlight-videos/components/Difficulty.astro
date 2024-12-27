@@ -6,6 +6,15 @@ interface Props {
 }
 
 const { value } = Astro.props
+
+// TODO(HiDeoo) sr-only i18n description
 ---
 
-<div>Difficulty: {value}</div>
+<div>{value}</div>
+
+<style>
+  div {
+    align-items: center;
+    display: flex;
+  }
+</style>

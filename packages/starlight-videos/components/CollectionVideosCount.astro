@@ -1,4 +1,6 @@
 ---
+import { Icon } from '@astrojs/starlight/components'
+
 import type { CollectionVideoEntry } from '../libs/video'
 
 interface Props {
@@ -6,6 +8,16 @@ interface Props {
 }
 
 const { collectionVideos } = Astro.props
+
+// TODO(HiDeoo) i18n + pluralize
 ---
 
-<div>Videos: {collectionVideos.length}</div>
+<div><Icon name="list-format" size="1rem" />{collectionVideos.length} videos</div>
+
+<style>
+  div {
+    align-items: center;
+    display: flex;
+    gap: 0.3125rem;
+  }
+</style>

@@ -23,8 +23,8 @@ const collections = await getCollections(locale)
       return (
         <Fragment>
           <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
-            <Duration value={durations} />
             <CollectionVideosCount {collectionVideos} />
+            <Duration value={durations} />
           </Card>
         </Fragment>
       )
