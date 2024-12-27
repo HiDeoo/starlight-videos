@@ -15,17 +15,13 @@ const collections = await getCollections(locale)
 
 <CardGrid>
   {
-    collections.map(async (collection) => {
-      const collectionVideos = await getCollectionVideos(collection.data.video, locale)
-      const durations = collectionVideos.map((video) => video.data.video.duration)
+    collections.map(async ({ data, data: { video }, id }) => {
+      const collectionVideos = await getCollectionVideos(video, locale)
+      const durations = collectionVideos.map((collectionVideo) => collectionVideo.data.video.duration)
 
       return (
         <Fragment>
-          <Card
-            description={collection.data.video.description ?? collection.data.description}
-            link={getEntryPath(collection.id, locale)}
-            title={collection.data.title}
-          >
+          <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
             <Duration value={durations} />
           </Card>
         </Fragment>

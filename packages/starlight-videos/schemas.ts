@@ -6,6 +6,8 @@ const baseVideoSchema = z.object({
   // TODO(HiDeoo)
   // TODO(HiDeoo) in seconds
   duration: z.number(),
+  // TODO(HiDeoo)
+  difficulty: z.string().optional(),
 })
 
 const videoDefinitionSchema = baseVideoSchema.extend({

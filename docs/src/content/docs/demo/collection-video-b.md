@@ -5,6 +5,7 @@ video:
   link: https://www.example.com
   duration: 3000
   collection: b
+  difficulty: Intermediate
   order: 1
 ---
 

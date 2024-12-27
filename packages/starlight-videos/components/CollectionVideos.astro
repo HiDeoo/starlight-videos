@@ -15,10 +15,10 @@ const { collectionVideos, locale } = Astro.props
 
 <ul>
   {
-    collectionVideos.map((video) => (
+    collectionVideos.map(({ data, data: { video }, id }) => (
       <li>
-        <a href={getEntryPath(video.id, locale)}>{video.data.title}</a>
-        <Duration value={video.data.video.duration} />
+        <a href={getEntryPath(id, locale)}>{data.title}</a>
+        <Duration value={video.duration} />
       </li>
     ))
   }

@@ -1,0 +1,11 @@
+---
+import type { CollectionVideo, Video } from '../schemas'
+
+interface Props {
+  value: (Video | CollectionVideo)['difficulty']
+}
+
+const { value } = Astro.props
+---
+
+<div>Difficulty: {value}</div>

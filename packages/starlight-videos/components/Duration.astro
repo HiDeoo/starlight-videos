@@ -1,6 +1,10 @@
 ---
+import type { CollectionVideo, Video } from '../schemas'
+
+type Duration = (Video | CollectionVideo)['duration']
+
 interface Props {
-  value: number | number[]
+  value: Duration | Duration[]
 }
 
 const { value } = Astro.props
