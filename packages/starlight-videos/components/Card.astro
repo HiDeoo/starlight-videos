@@ -12,7 +12,7 @@ const { description, link, title } = Astro.props
   <h2><a href={link}>{title}</a></h2>
   {
     description && (
-      <div class="starlight-videos-card-description">
+      <div class="sl-videos-card-description">
         <p>{description}</p>
       </div>
     )
@@ -41,7 +41,7 @@ const { description, link, title } = Astro.props
     border-color: var(--sl-color-gray-2);
   }
 
-  .starlight-videos-card-description {
+  .sl-videos-card-description {
     flex-grow: 1;
     padding-inline: 1rem;
   }
@@ -55,7 +55,7 @@ const { description, link, title } = Astro.props
     padding-top: 1rem;
   }
 
-  h2:has(+ :not(.starlight-videos-card-description)) {
+  h2:has(+ :not(.sl-videos-card-description)) {
     flex-grow: 1;
   }
 

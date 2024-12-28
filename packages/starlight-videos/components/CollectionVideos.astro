@@ -8,12 +8,13 @@ import Duration from './Duration.astro'
 
 interface Props extends StarlightProps {
   collectionVideos: CollectionVideoEntry[]
+  variant?: 'playlist' | undefined
 }
 
-const { collectionVideos, locale } = Astro.props
+const { collectionVideos, locale, variant } = Astro.props
 ---
 
-<ul>
+<ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
   {
     collectionVideos.map(({ data, data: { video }, id }) => (
       <li>
@@ -27,5 +28,21 @@ const { collectionVideos, locale } = Astro.props
 <style>
   ul {
     border: 1px solid red;
+  }
+
+  ul.sl-videos-collection-videos-playlist {
+    max-height: 15rem;
+    overflow-y: auto;
+  }
+
+  @media (min-width: 65rem) {
+    ul.sl-videos-collection-videos-playlist {
+      bottom: 0;
+      left: 100%;
+      max-height: unset;
+      position: absolute;
+      right: calc(-1 * var(--sl-videos-playlist-width));
+      top: 0;
+    }
   }
 </style>
