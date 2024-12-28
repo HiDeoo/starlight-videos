@@ -1,5 +1,6 @@
 export const Translations = {
   en: {
+    'starlightVideos.video.difficulty': 'Difficulty',
     'starlightVideos.video.duration': 'Duration',
     'starlightVideos.video.duration.minutes_one': '{{count}} min',
     'starlightVideos.video.duration.minutes_other': '{{count}} mins',
@@ -10,6 +11,7 @@ export const Translations = {
     'starlightVideos.videos.count_other': '{{count}} videos',
   },
   fr: {
+    'starlightVideos.video.difficulty': 'Difficulté',
     'starlightVideos.video.duration': 'Durée',
     'starlightVideos.video.duration.minutes': '{{count}} min',
     'starlightVideos.video.duration.hours': '{{count}} h {{minutes}}',

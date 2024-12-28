@@ -7,11 +7,12 @@ interface Props {
 }
 
 const { value, variant } = Astro.props
-
-// TODO(HiDeoo) sr-only i18n description
 ---
 
-<div class:list={[{ 'sl-videos-difficulty': variant !== 'minimal' }]}>{value}</div>
+<div class:list={[{ 'sl-videos-difficulty': variant !== 'minimal' }]}>
+  <span class="sr-only">{Astro.locals.t('starlightVideos.video.difficulty')}</span>
+  {value}
+</div>
 
 <style>
   div {
