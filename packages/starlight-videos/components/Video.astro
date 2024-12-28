@@ -14,15 +14,13 @@ interface Props extends StarlightProps {
 }
 
 const { video } = Astro.props
-
-// TODO(HiDeoo) Youtube playlabel i18n
 ---
 
 <div class="sl-videos-video">
   <div
     class:list={['sl-videos-video-player', { 'sl-videos-video-player-collection': video.type === 'collection-video' }]}
   >
-    <YouTube id={video.link} posterQuality="max" />
+    <YouTube id={video.link} playlabel={Astro.locals.t('starlightVideos.video.play')} posterQuality="max" />
     {
       video.type === 'collection-video' && (
         <VideoCollectionVideos {...Astro.props} collectionVideo={video} variant="playlist" />
