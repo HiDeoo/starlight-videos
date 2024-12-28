@@ -3,18 +3,42 @@ import type { CollectionVideo, Video } from '../schemas'
 
 interface Props {
   value: (Video | CollectionVideo)['difficulty']
+  variant?: 'minimal'
 }
 
-const { value } = Astro.props
+const { value, variant } = Astro.props
 
 // TODO(HiDeoo) sr-only i18n description
 ---
 
-<div>{value}</div>
+<div class:list={[{ 'sl-videos-difficulty': variant !== 'minimal' }]}>{value}</div>
 
 <style>
   div {
     align-items: center;
     display: flex;
+  }
+
+  div.sl-videos-difficulty {
+    align-self: flex-start;
+    display: inline-flex;
+    font-size: var(--sl-text-sm);
+    line-height: 1.1875;
+    padding: 0.625rem 1.125rem;
+    border: 1px solid var(--sl-color-gray-2);
+    color: var(--sl-color-gray-2);
+  }
+
+  @media (min-width: 40rem) {
+    div.sl-videos-difficulty {
+      align-self: center;
+    }
+  }
+
+  @media (min-width: 50rem) {
+    div.sl-videos-difficulty {
+      font-size: var(--sl-text-base);
+      padding: 0.75rem 1.25rem;
+    }
   }
 </style>

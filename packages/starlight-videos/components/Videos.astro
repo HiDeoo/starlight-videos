@@ -18,7 +18,7 @@ const videos = await getVideos(locale)
   {
     videos.map(({ data, data: { video }, id }) => (
       <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
-        {video.difficulty && <Difficulty value={video.difficulty} />}
+        {video.difficulty && <Difficulty value={video.difficulty} variant="minimal" />}
         <Duration value={video.duration} />
       </Card>
     ))

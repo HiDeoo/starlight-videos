@@ -14,7 +14,7 @@ video:
     - text: View on GitHub
       link: https://github.com/astronaut/my-project
       icon: external
-      variant: minimal
+      variant: secondary
 ---
 
 This is a video in a collection.
