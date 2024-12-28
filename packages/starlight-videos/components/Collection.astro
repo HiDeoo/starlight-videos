@@ -15,6 +15,21 @@ const { collection, locale } = Astro.props
 const collectionVideos = await getCollectionVideos(collection, locale)
 ---
 
-<CollectionVideos {...Astro.props} collectionVideos={collectionVideos} />
+<div>
+  <CollectionVideos {...Astro.props} collectionVideos={collectionVideos} />
+  <slot />
+</div>
 
-<slot />
+<style>
+  div {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 50rem) {
+    div {
+      grid-template-columns: var(--sl-videos-playlist-width) 1fr;
+    }
+  }
+</style>

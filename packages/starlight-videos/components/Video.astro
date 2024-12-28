@@ -52,8 +52,6 @@ const { video } = Astro.props
 
 <style>
   .sl-videos-video {
-    --sl-videos-playlist-width: 22rem;
-
     background-attachment: red;
     display: flex;
     flex-direction: column;
@@ -64,7 +62,7 @@ const { video } = Astro.props
     min-width: 100%;
   }
 
-  @media (min-width: 65rem) {
+  @media (min-width: 50rem) {
     .sl-videos-video-player.sl-videos-video-player-collection {
       margin-right: var(--sl-videos-playlist-width);
       position: relative;
