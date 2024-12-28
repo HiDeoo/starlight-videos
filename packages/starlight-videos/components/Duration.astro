@@ -13,14 +13,20 @@ interface Props {
 const { value, withIcon = true } = Astro.props
 
 const durationInSeconds = Array.isArray(value) ? value.reduce((acc, duration) => acc + duration, 0) : value
-// TODO(HiDeoo) Format to hours if duration is greater than 60 minutes
-const durationInMinutes = Math.floor(durationInSeconds / 60)
-// TODO(HiDeoo) i18n duration
+const durationInMinutes = Math.ceil(durationInSeconds / 60)
+const durationInHours = Math.floor(durationInMinutes / 60)
+const remainingMinutes = String(Math.ceil(durationInMinutes % 60)).padStart(2, '0')
 
-// TODO(HiDeoo) sr-only i18n description or icon label
+const durationKey =
+  durationInHours > 0 ? 'starlightVideos.video.duration.hours' : 'starlightVideos.video.duration.minutes'
+const durationParams =
+  durationInHours > 0 ? { count: durationInHours, minutes: remainingMinutes } : { count: durationInMinutes }
 ---
 
-<div>{withIcon && <Icon name="seti:clock" size="0.75rem" />}{durationInMinutes}</div>
+<div>
+  <span class="sr-only">{Astro.locals.t('starlightVideos.video.duration')}</span>
+  {withIcon && <Icon name="seti:clock" size="0.75rem" />}{Astro.locals.t(durationKey, durationParams)}
+</div>
 
 <style>
   div {
