@@ -15,31 +15,6 @@ interface Props extends StarlightProps {
 
 const { collectionVideos, locale, variant } = Astro.props
 
-// FIXME(HiDeoo)
-const t = [
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-  ...collectionVideos,
-]
-
 // TODO(HiDeoo) button a11y / i18n
 
 type LinkAttributes = HTMLAttributes<'a'>
@@ -49,7 +24,7 @@ type LinkAttributes = HTMLAttributes<'a'>
   <button><Icon name="right-caret" size="1.3rem" /></button>
   <ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
     {
-      t.map(({ data, data: { video }, id }) => {
+      collectionVideos.map(({ data, data: { video }, id }) => {
         const href = getEntryPath(id, locale)
 
         const attributes: LinkAttributes = { href }

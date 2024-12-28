@@ -8,11 +8,12 @@ interface Props {
 }
 
 const { collectionVideos } = Astro.props
-
-// TODO(HiDeoo) i18n + pluralize
 ---
 
-<div><Icon name="list-format" size="1rem" />{collectionVideos.length} videos</div>
+<div>
+  <Icon name="list-format" size="1rem" />
+  {Astro.locals.t('starlightVideos.videos.count', { count: collectionVideos.length })}
+</div>
 
 <style>
   div {

@@ -3,12 +3,15 @@ import { fileURLToPath } from 'node:url'
 import type { StarlightPlugin } from '@astrojs/starlight/types'
 
 import { overrideStarlightComponent } from './libs/starlight'
+import { Translations } from './translations'
 
 export default function starlightVideosPlugin(): StarlightPlugin {
   return {
     name: 'starlight-videos',
     hooks: {
-      setup({ addIntegration, config, logger, updateConfig }) {
+      setup({ addIntegration, config, injectTranslations, logger, updateConfig }) {
+        injectTranslations(Translations)
+
         updateConfig({
           components: {
             ...config.components,
