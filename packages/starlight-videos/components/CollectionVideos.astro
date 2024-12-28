@@ -15,13 +15,14 @@ interface Props extends StarlightProps {
 
 const { collectionVideos, locale, variant } = Astro.props
 
-// TODO(HiDeoo) button a11y / i18n
-
 type LinkAttributes = HTMLAttributes<'a'>
 ---
 
 <sl-videos-collection-videos>
-  <button><Icon name="right-caret" size="1.3rem" /></button>
+  <button>
+    <span class="sr-only">{Astro.locals.t('starlightVideos.collection.playlist.toggle')}</span>
+    <Icon name="right-caret" size="1.3rem" />
+  </button>
   <ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
     {
       collectionVideos.map(({ data, data: { video }, id }) => {
