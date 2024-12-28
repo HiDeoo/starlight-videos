@@ -10,6 +10,8 @@ let { hasSidebar, toc } = Astro.props
 if (isAnyVideoEntry(entry)) {
   entry.data = {
     ...entry.data,
+    next: false,
+    prev: false,
     template: 'splash',
   }
   hasSidebar = false

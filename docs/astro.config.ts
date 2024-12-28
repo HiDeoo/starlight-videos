@@ -15,7 +15,7 @@ export default defineConfig({
       },
       plugins: [starlightVideos()],
       // TODO(HiDeoo)
-      sidebar: [],
+      // sidebar: [],
       social: {
         blueSky: 'https://bsky.app/profile/hideoo.dev',
         github: 'https://github.com/HiDeoo/starlight-videos',
