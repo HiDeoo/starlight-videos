@@ -69,6 +69,10 @@ const { video } = Astro.props
       margin-right: var(--sl-videos-playlist-width);
       position: relative;
     }
+
+    .sl-videos-video-player.sl-videos-video-player-collection:has(ul.sl-videos-collection-videos-playlist-folded) {
+      margin-right: 0;
+    }
   }
 
   .sl-videos-video-meta {

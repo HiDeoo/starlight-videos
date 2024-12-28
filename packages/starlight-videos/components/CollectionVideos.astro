@@ -1,4 +1,5 @@
 ---
+import { Icon } from '@astrojs/starlight/components'
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
 
 import { getEntryPath } from '../libs/path'
@@ -37,18 +38,26 @@ const t = [
   ...collectionVideos,
   ...collectionVideos,
 ]
+
+// TODO(HiDeoo) current highlight?
+// TODO(HiDeoo) aria current
+
+// TODO(HiDeoo) button a11y / i18n
 ---
 
-<ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
-  {
-    t.map(({ data, data: { video }, id }) => (
-      <li>
-        <a href={getEntryPath(id, locale)}>{data.title}</a>
-        <Duration value={video.duration} withIcon={false} />
-      </li>
-    ))
-  }
-</ul>
+<sl-videos-collection-videos>
+  <button><Icon name="right-caret" size="1.3rem" /></button>
+  <ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
+    {
+      t.map(({ data, data: { video }, id }) => (
+        <li>
+          <a href={getEntryPath(id, locale)}>{data.title}</a>
+          <Duration value={video.duration} withIcon={false} />
+        </li>
+      ))
+    }
+  </ul>
+</sl-videos-collection-videos>
 
 <style>
   ul {
@@ -63,6 +72,10 @@ const t = [
   }
 
   @media (min-width: 65rem) {
+    ul.sl-videos-collection-videos-playlist-folded {
+      display: none;
+    }
+
     ul.sl-videos-collection-videos-playlist {
       border-left: 1px solid var(--sl-color-hairline-shade);
       border-top: none;
@@ -112,4 +125,65 @@ const t = [
   span {
     font-size: 14px;
   }
+
+  button {
+    --sl-videos-collection-videos-toggle-width: 1.2rem;
+    --sl-videos-collection-videos-toggle-height: 3rem;
+
+    background-color: var(--sl-color-gray-6);
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    display: none;
+    height: 3rem;
+    left: calc(100% - var(--sl-videos-collection-videos-toggle-width) + 1px);
+    position: absolute;
+    top: calc(50% - var(--sl-videos-collection-videos-toggle-height) / 2);
+    width: var(--sl-videos-collection-videos-toggle-width);
+    z-index: 1;
+  }
+
+  button:is(:hover, :focus-visible) {
+    background-color: var(--sl-color-black);
+  }
+
+  @media (min-width: 65rem) {
+    button:has(+ ul.sl-videos-collection-videos-playlist) {
+      display: block;
+    }
+
+    button:has(+ ul.sl-videos-collection-videos-playlist-folded) {
+      background-color: var(--sl-color-black);
+      left: calc(100% - var(--sl-videos-collection-videos-toggle-width));
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+
+    button:has(+ ul.sl-videos-collection-videos-playlist-folded):is(:hover, :focus-visible) {
+      background-color: var(--sl-color-gray-6);
+    }
+  }
+
+  button svg {
+    position: absolute;
+    left: 0;
+    top: calc(50% - 1.3rem / 2);
+  }
 </style>
+
+<script>
+  customElements.define(
+    'sl-videos-collection-videos',
+    class StarlightVideosCollectionVideosToggle extends HTMLElement {
+      constructor() {
+        super()
+
+        const list = this.querySelector('ul')
+        const toggle = this.querySelector('button')
+
+        if (!toggle || !list) return
+
+        toggle.addEventListener('click', () => list.classList.toggle('sl-videos-collection-videos-playlist-folded'))
+      }
+    },
+  )
+</script>
