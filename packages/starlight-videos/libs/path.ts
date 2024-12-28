@@ -38,7 +38,7 @@ export function stripLeadingSlash(path: string) {
   return path.slice(1)
 }
 
-function stripTrailingSlash(path: string) {
+export function stripTrailingSlash(path: string) {
   if (!path.endsWith('/')) return path
   return path.slice(0, -1)
 }

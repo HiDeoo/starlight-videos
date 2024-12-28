@@ -1,8 +1,9 @@
 ---
 import { Icon } from '@astrojs/starlight/components'
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
+import type { HTMLAttributes } from 'astro/types'
 
-import { getEntryPath } from '../libs/path'
+import { getEntryPath, stripTrailingSlash } from '../libs/path'
 import type { CollectionVideoEntry } from '../libs/video'
 
 import Duration from './Duration.astro'
@@ -39,22 +40,28 @@ const t = [
   ...collectionVideos,
 ]
 
-// TODO(HiDeoo) current highlight?
-// TODO(HiDeoo) aria current
-
 // TODO(HiDeoo) button a11y / i18n
+
+type LinkAttributes = HTMLAttributes<'a'>
 ---
 
 <sl-videos-collection-videos>
   <button><Icon name="right-caret" size="1.3rem" /></button>
   <ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
     {
-      t.map(({ data, data: { video }, id }) => (
-        <li>
-          <a href={getEntryPath(id, locale)}>{data.title}</a>
-          <Duration value={video.duration} withIcon={false} />
-        </li>
-      ))
+      t.map(({ data, data: { video }, id }) => {
+        const href = getEntryPath(id, locale)
+
+        const attributes: LinkAttributes = { href }
+        if (href === stripTrailingSlash(Astro.url.pathname)) attributes['aria-current'] = 'page'
+
+        return (
+          <li>
+            <a {...attributes}>{data.title}</a>
+            <Duration value={video.duration} withIcon={false} />
+          </li>
+        )
+      })
     }
   </ul>
 </sl-videos-collection-videos>
@@ -108,7 +115,7 @@ const t = [
   }
 
   li:hover,
-  li:has(:focus-within) {
+  li:has(:is(:focus-within, a[aria-current='page'])) {
     background-color: var(--sl-color-gray-5);
     color: var(--sl-color-white);
   }
