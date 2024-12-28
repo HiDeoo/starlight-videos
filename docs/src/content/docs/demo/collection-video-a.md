@@ -7,4 +7,4 @@ video:
   collection: a
 ---
 
-This is a video in a collection.
+This is a `video` in a collection.

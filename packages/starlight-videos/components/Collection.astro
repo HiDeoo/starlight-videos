@@ -1,4 +1,5 @@
 ---
+import MarkdownContent from '@astrojs/starlight/components/MarkdownContent.astro'
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
 
 import { getCollectionVideos } from '../libs/video'
@@ -17,6 +18,9 @@ const collectionVideos = await getCollectionVideos(collection, locale)
 
 <div>
   <CollectionVideos {...Astro.props} collectionVideos={collectionVideos} />
+  <MarkdownContent {...Astro.props}>
+    <slot />
+  </MarkdownContent>
   <slot />
 </div>
 
