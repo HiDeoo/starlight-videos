@@ -12,14 +12,39 @@ interface Props extends StarlightProps {
 }
 
 const { collectionVideos, locale, variant } = Astro.props
+
+// FIXME(HiDeoo)
+const t = [
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+  ...collectionVideos,
+]
 ---
 
 <ul class:list={[{ 'sl-videos-collection-videos-playlist': variant === 'playlist' }]}>
   {
-    collectionVideos.map(({ data, data: { video }, id }) => (
+    t.map(({ data, data: { video }, id }) => (
       <li>
         <a href={getEntryPath(id, locale)}>{data.title}</a>
-        <Duration value={video.duration} />
+        <Duration value={video.duration} withIcon={false} />
       </li>
     ))
   }
@@ -27,16 +52,20 @@ const { collectionVideos, locale, variant } = Astro.props
 
 <style>
   ul {
-    border: 1px solid red;
+    background-color: var(--sl-color-gray-6);
+    padding: 0;
   }
 
   ul.sl-videos-collection-videos-playlist {
+    border-top: 1px solid var(--sl-color-hairline-shade);
     max-height: 15rem;
     overflow-y: auto;
   }
 
   @media (min-width: 65rem) {
     ul.sl-videos-collection-videos-playlist {
+      border-left: 1px solid var(--sl-color-hairline-shade);
+      border-top: none;
       bottom: 0;
       left: 100%;
       max-height: unset;
@@ -44,5 +73,43 @@ const { collectionVideos, locale, variant } = Astro.props
       right: calc(-1 * var(--sl-videos-playlist-width));
       top: 0;
     }
+  }
+
+  li {
+    align-items: center;
+    color: var(--sl-color-gray-2);
+    display: flex;
+    font-size: var(--sl-text-sm);
+    gap: 1rem;
+    padding: 0.625rem 1rem;
+    position: relative;
+  }
+
+  li:hover,
+  li:has(:focus-within) {
+    background-color: var(--sl-color-gray-5);
+    color: var(--sl-color-white);
+  }
+
+  a {
+    color: inherit;
+    display: -webkit-box;
+    font-size: var(--sl-text-base);
+    line-height: 1.3;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  a::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+
+  span {
+    font-size: 14px;
   }
 </style>

@@ -7,9 +7,10 @@ type Duration = (Video | CollectionVideo)['duration']
 
 interface Props {
   value: Duration | Duration[]
+  withIcon?: boolean
 }
 
-const { value } = Astro.props
+const { value, withIcon = true } = Astro.props
 
 const durationInSeconds = Array.isArray(value) ? value.reduce((acc, duration) => acc + duration, 0) : value
 // TODO(HiDeoo) Format to hours if duration is greater than 60 minutes
@@ -19,7 +20,7 @@ const durationInMinutes = Math.floor(durationInSeconds / 60)
 // TODO(HiDeoo) sr-only i18n description or icon label
 ---
 
-<div><Icon name="seti:clock" size="0.75rem" />{durationInMinutes}</div>
+<div>{withIcon && <Icon name="seti:clock" size="0.75rem" />}{durationInMinutes}</div>
 
 <style>
   div {
