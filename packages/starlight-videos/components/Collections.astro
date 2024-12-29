@@ -21,12 +21,12 @@ const collections = await getCollections(locale)
       const durations = collectionVideos.map((collectionVideo) => collectionVideo.data.video.duration)
 
       return (
-        <Fragment>
+        <>
           <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
             <CollectionVideosCount {collectionVideos} />
             <Duration value={durations} />
           </Card>
-        </Fragment>
+        </>
       )
     })
   }

@@ -21,11 +21,11 @@ const { entry } = Astro.props
   ) : isCollectionsEntry(entry) ? (
     <Collections {...Astro.props} />
   ) : (
-    <Fragment>
+    <>
       <Default {...Astro.props}>
         <slot />
+        {isEntryWithVideo(entry) && <Transcript {...Astro.props} video={entry.data.video} />}
       </Default>
-      {isEntryWithVideo(entry) && <Transcript {...Astro.props} video={entry.data.video} />}
-    </Fragment>
+    </>
   )
 }

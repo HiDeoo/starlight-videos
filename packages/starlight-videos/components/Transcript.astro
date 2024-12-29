@@ -34,6 +34,35 @@ If you believe this is a bug, please file an issue at https://github.com/HiDeoo/
   }
   transcript = new SrtParser().fromSrt(content.toString())
 }
+
+function formatStartTime(startTime: string) {
+  startTime = startTime.replace(/,\d+$/, '')
+  const segments = startTime.split(':')
+  const time = [segments.at(1), segments.at(2)]
+  if (segments.at(0) !== '00') time.unshift(segments.at(0))
+  return time.join(':')
+}
 ---
 
-<!-- // TODO(HiDeoo)  -->{transcript.length > 0 && <div>Transcript</div>}
+{
+  transcript.length > 0 && (
+    <>
+      <h2>{Astro.locals.t('starlightVideos.video.transcript')}</h2>
+      <blockquote>
+        {transcript.map((sub) => {
+          return (
+            <p>
+              <code>{formatStartTime(sub.startTime)}</code>&nbsp;{sub.text}
+            </p>
+          )
+        })}
+      </blockquote>
+    </>
+  )
+}
+
+<style>
+  code {
+    margin-inline-end: 0.25rem;
+  }
+</style>
