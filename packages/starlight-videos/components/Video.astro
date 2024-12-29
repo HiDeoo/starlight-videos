@@ -14,6 +14,7 @@ interface Props extends StarlightProps {
 }
 
 const { video } = Astro.props
+const { actions = [] } = video
 ---
 
 <div class="sl-videos-video">
@@ -30,9 +31,9 @@ const { video } = Astro.props
   <div class="sl-videos-video-meta">
     {video.difficulty && <Difficulty value={video.difficulty} />}
     {
-      video.actions.length > 0 && (
+      actions.length > 0 && (
         <div class="sl-videos-video-meta-actions">
-          {video.actions.map((action) => (
+          {actions.map((action) => (
             <LinkButton
               href={action.link}
               icon={action.icon as ComponentProps<typeof LinkButton>['icon']}

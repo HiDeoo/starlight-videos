@@ -36,7 +36,7 @@ const baseVideoSchema = z.object({
       iconPlacement: z.enum(['start', 'end']).default('start'),
     })
     .array()
-    .default([]),
+    .optional(),
 })
 
 const videoDefinitionSchema = baseVideoSchema.extend({
