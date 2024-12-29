@@ -20,6 +20,8 @@ const baseVideoSchema = z.object({
     }
   }),
   // TODO(HiDeoo)
+  transcript: z.string().optional(),
+  // TODO(HiDeoo)
   difficulty: z.string().optional(),
   // TODO(HiDeoo)
   actions: z

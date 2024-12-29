@@ -2,9 +2,10 @@
 import Default from '@astrojs/starlight/components/MarkdownContent.astro'
 import type { Props } from '@astrojs/starlight/props'
 
-import { isCollectionEntry, isCollectionsEntry, isVideosEntry } from '../../libs/video'
+import { isCollectionEntry, isCollectionsEntry, isEntryWithVideo, isVideosEntry } from '../../libs/video'
 import Collection from '../Collection.astro'
 import Collections from '../Collections.astro'
+import Transcript from '../Transcript.astro'
 import Videos from '../Videos.astro'
 
 const { entry } = Astro.props
@@ -20,8 +21,11 @@ const { entry } = Astro.props
   ) : isCollectionsEntry(entry) ? (
     <Collections {...Astro.props} />
   ) : (
-    <Default {...Astro.props}>
-      <slot />
-    </Default>
+    <Fragment>
+      <Default {...Astro.props}>
+        <slot />
+      </Default>
+      {isEntryWithVideo(entry) && <Transcript {...Astro.props} video={entry.data.video} />}
+    </Fragment>
   )
 }
