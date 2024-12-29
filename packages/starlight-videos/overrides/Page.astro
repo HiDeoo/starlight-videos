@@ -5,18 +5,17 @@ import type { Props } from '@astrojs/starlight/props'
 import { isAnyVideoEntry } from '../libs/video'
 
 const { entry } = Astro.props
-let { hasSidebar, toc } = Astro.props
+let { hasSidebar, pagination, toc } = Astro.props
 
 if (isAnyVideoEntry(entry)) {
   entry.data = {
     ...entry.data,
-    next: false,
-    prev: false,
     template: 'splash',
   }
   hasSidebar = false
+  pagination = { prev: undefined, next: undefined }
   toc = undefined
 }
 ---
 
-<Default {...Astro.props} {hasSidebar} {entry} {toc}><slot /></Default>
+<Default {...Astro.props} {hasSidebar} {entry} {pagination} {toc}><slot /></Default>
