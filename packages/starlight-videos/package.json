@@ -7,6 +7,7 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
+    "./components": "./user-components/index.ts",
     "./components/DraftContentNotice.astro": "./components/starlight/DraftContentNotice.astro",
     "./components/FallbackContentNotice.astro": "./components/starlight/FallbackContentNotice.astro",
     "./components/MarkdownContent.astro": "./components/starlight/MarkdownContent.astro",

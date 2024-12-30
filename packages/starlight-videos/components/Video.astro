@@ -1,10 +1,10 @@
 ---
-import { YouTube } from '@astro-community/astro-embed-youtube'
 import { LinkButton } from '@astrojs/starlight/components'
 import type { Props as StarlightProps } from '@astrojs/starlight/props'
 import type { ComponentProps } from 'astro/types'
 
 import type { CollectionVideo, Video } from '../schemas'
+import { VideoPlayer } from '../user-components'
 
 import Difficulty from './Difficulty.astro'
 import VideoCollectionVideos from './VideoCollectionVideos.astro'
@@ -19,9 +19,12 @@ const { actions = [] } = video
 
 <div class="sl-videos-video">
   <div
-    class:list={['sl-videos-video-player', { 'sl-videos-video-player-collection': video.type === 'collection-video' }]}
+    class:list={[
+      'sl-videos-video-player-wraper',
+      { 'sl-videos-video-player-collection': video.type === 'collection-video' },
+    ]}
   >
-    <YouTube id={video.link} playlabel={Astro.locals.t('starlightVideos.video.play')} posterQuality="max" />
+    <VideoPlayer link={video.link} />
     {
       video.type === 'collection-video' && (
         <VideoCollectionVideos {...Astro.props} collectionVideo={video} variant="playlist" />
@@ -57,17 +60,15 @@ const { actions = [] } = video
     gap: 1rem;
   }
 
-  .sl-videos-video :global(lite-youtube) {
-    min-width: 100%;
-  }
-
   @media (min-width: 50rem) {
-    .sl-videos-video-player.sl-videos-video-player-collection {
+    .sl-videos-video-player-wraper.sl-videos-video-player-collection {
       margin-right: var(--sl-videos-playlist-width);
       position: relative;
     }
 
-    .sl-videos-video-player.sl-videos-video-player-collection:has(ul.sl-videos-collection-videos-playlist-folded) {
+    .sl-videos-video-player-wraper.sl-videos-video-player-collection:has(
+        ul.sl-videos-collection-videos-playlist-folded
+      ) {
       margin-right: 0;
     }
   }
