@@ -7,14 +7,134 @@ video:
   transcript: ./src/assets/transcripts/demo.srt
 ---
 
-# test a
+## List
 
-plop
+import { List } from 'starlight-videos/components'
+
+### Unordered list
+
+<List title="Prerequisites">
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='minimal' icon="star">
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='caution'>
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='danger'>
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='note'>
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='success'>
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+<List title="Prerequisites" variant='tip'>
+
+- test 1
+- test 2
+- test 3
+
+</List>
+
+### Ordered list
+
+<List title="Prerequisites">
+
+1. test 1
+2. test 2
+3. test 3
+
+</List>
+
+### Task list
+
+<List title="Prerequisites">
+
+- [ ] test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+<List title="Prerequisites" variant='caution'>
+
+- [ ] test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+<List title="Prerequisites" variant='danger'>
+
+- [ ] test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+<List title="Prerequisites" variant='note'>
+
+- [ ] test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+<List title="Prerequisites" variant='success'>
+
+- [ ] test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+<List title="Prerequisites" variant='tip'>
+
+- [ ] test 1
+- [x] test 2
+- [ ] test 3
+
+</List>
+
+## Video player
 
 import { VideoPlayer } from 'starlight-videos/components'
 
 <VideoPlayer link="https://www.youtube.com/watch?v=5u0Ds7wzUeI" />
 
-# test b
+## Some other content
 
 This is a `video` (not in a collection).

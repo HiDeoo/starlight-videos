@@ -24,8 +24,14 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.6",
+    "hastscript": "^9.0.0",
     "iso8601-duration": "^2.1.2",
-    "srt-parser-2": "^1.2.3"
+    "srt-parser-2": "^1.2.3",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.4",
+    "unified": "^11.0.5"
   },
   "peerDependencies": {
     "@astrojs/starlight": ">=0.30.0"

@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url'
 
 import type { StarlightPlugin } from '@astrojs/starlight/types'
 
+import { rehypeStarlightVideosTasks } from './libs/rehype'
 import { overrideStarlightComponent } from './libs/starlight'
 import { Translations } from './translations'
 
@@ -27,6 +28,9 @@ export default function starlightVideosPlugin(): StarlightPlugin {
           hooks: {
             'astro:config:setup': ({ updateConfig: updateAstroConfig }) => {
               updateAstroConfig({
+                markdown: {
+                  rehypePlugins: [[rehypeStarlightVideosTasks]],
+                },
                 vite: {
                   resolve: {
                     alias: [
