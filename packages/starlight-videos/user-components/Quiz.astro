@@ -1,0 +1,145 @@
+---
+import type { ComponentProps } from 'astro/types'
+
+import Box from '../components/Box.astro'
+
+interface Props {
+  class?: string
+  multiple?: boolean
+  title: string
+  variant?: ComponentProps<typeof Box>['variant']
+}
+
+const { multiple = false, title, variant = 'minimal' } = Astro.props
+
+const dataAttributes: DOMStringMap = {
+  'data-correct-label': Astro.locals.t('starlightVideos.quiz.correct'),
+  'data-incorrect-label': Astro.locals.t('starlightVideos.quiz.incorrect'),
+}
+if (multiple) dataAttributes['data-multiple'] = ''
+---
+
+<sl-videos-quiz class={Astro.props.class} {...dataAttributes}>
+  <Box icon="puzzle" {title} {variant}>
+    <form>
+      <ul>
+        <slot />
+      </ul>
+      <button type="submit" disabled>{Astro.locals.t('starlightVideos.quiz.submit')}</button>
+      <div class="sr-only sl-videos-quiz-status" role="alert"></div>
+    </form>
+  </Box>
+</sl-videos-quiz>
+
+<style>
+  sl-videos-quiz {
+    display: block;
+    background-color: red;
+  }
+
+  button,
+  .sl-videos-quiz-status {
+    border-radius: 999rem;
+    outline-offset: 0.25rem;
+    padding: 0.5rem 1.25rem;
+  }
+
+  button {
+    background-color: var(--sl-color-text-accent);
+    border: 1px solid var(--sl-color-text-accent);
+    color: var(--sl-color-black);
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  button:not([disabled]) {
+    cursor: pointer;
+    opacity: 1;
+  }
+
+  .sl-videos-quiz-status {
+    background-color: var(--sl-color-green-low);
+    border: 1px solid var(--sl-color-green-high);
+    display: inline-block;
+  }
+
+  .sl-videos-quiz-status.sl-videos-quiz-status-incorrect {
+    background-color: var(--sl-color-red-low);
+    border-color: var(--sl-color-red-high);
+  }
+</style>
+
+<script>
+  customElements.define(
+    'sl-videos-quiz',
+    class StarlightVideosQuiz extends HTMLElement {
+      #form = this.querySelector('form')!
+      #submitButton = this.querySelector<HTMLButtonElement>('button[type="submit"]')!
+      #statusElement = this.querySelector<HTMLDivElement>('.sl-videos-quiz-status')!
+      #isMultiple = this.dataset['multiple'] !== undefined
+
+      constructor() {
+        super()
+
+        const name = `quiz-${Math.random().toString(36).substring(7)}`
+
+        this.querySelectorAll<HTMLInputElement>('li input[type="radio"]').forEach((input) => {
+          input.disabled = false
+
+          if (this.#isMultiple) {
+            input.type = 'checkbox'
+          } else {
+            input.name = name
+          }
+        })
+
+        this.#form.addEventListener('change', () => {
+          this.#clearStatus()
+          this.#toggleSubmit(true)
+
+          if (this.#isMultiple && this.querySelectorAll<HTMLInputElement>('li input:checked').length === 0) {
+            this.#submitButton.disabled = true
+          }
+        })
+
+        this.#form.addEventListener('submit', this.#handleSubmit)
+      }
+
+      #clearStatus() {
+        this.#statusElement.innerText = ''
+        this.#statusElement.classList.add('sr-only')
+      }
+
+      #toggleSubmit(enabled: boolean) {
+        this.#submitButton.toggleAttribute('disabled', !enabled)
+        this.#submitButton.classList.toggle('sr-only', !enabled)
+        this.#statusElement.classList.toggle('sr-only', enabled)
+      }
+
+      #handleSubmit = (event: SubmitEvent) => {
+        event.preventDefault()
+
+        let isCorrect = false
+
+        if (this.#isMultiple) {
+          const selected = this.querySelectorAll<HTMLInputElement>('li input:checked')
+          if (!selected) return
+          const correct = this.querySelectorAll<HTMLInputElement>('li input[data-correct]')
+
+          isCorrect =
+            Array.from(selected).every((input) => input.dataset['correct'] !== undefined) &&
+            correct.length === selected.length
+        } else {
+          const selected = this.querySelector<HTMLInputElement>('li input:checked')
+          if (!selected) return
+          isCorrect = selected.dataset['correct'] !== undefined
+        }
+
+        this.#toggleSubmit(false)
+
+        this.#statusElement.classList.toggle('sl-videos-quiz-status-incorrect', !isCorrect)
+        this.#statusElement.innerText = isCorrect ? this.dataset['correctLabel']! : this.dataset['incorrectLabel']!
+      }
+    },
+  )
+</script>

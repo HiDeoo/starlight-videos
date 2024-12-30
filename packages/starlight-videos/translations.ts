@@ -1,6 +1,9 @@
 export const Translations = {
   en: {
     'starlightVideos.collection.playlist.toggle': 'Toggle playlist visibility',
+    'starlightVideos.quiz.correct': 'Correct',
+    'starlightVideos.quiz.incorrect': 'Incorrect',
+    'starlightVideos.quiz.submit': 'Submit',
     'starlightVideos.video.difficulty': 'Difficulty',
     'starlightVideos.video.duration': 'Duration',
     'starlightVideos.video.duration.minutes_one': '{{count}} min',
@@ -14,6 +17,9 @@ export const Translations = {
   },
   fr: {
     'starlightVideos.collection.playlist.toggle': "Basculer l'affichage de la liste de lecture",
+    'starlightVideos.quiz.correct': 'Correct',
+    'starlightVideos.quiz.incorrect': 'Incorrect',
+    'starlightVideos.quiz.submit': 'Soumettre',
     'starlightVideos.video.difficulty': 'Difficulté',
     'starlightVideos.video.duration': 'Durée',
     'starlightVideos.video.duration.minutes': '{{count}} min',

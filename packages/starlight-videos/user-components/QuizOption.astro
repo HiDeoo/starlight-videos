@@ -1,0 +1,17 @@
+---
+interface Props {
+  correct?: boolean
+}
+
+const { correct = false } = Astro.props
+
+const dataAttributes: DOMStringMap = {}
+if (correct) dataAttributes['data-correct'] = ''
+---
+
+<li>
+  <label>
+    <input disabled type="radio" {...dataAttributes} />
+    <slot />
+  </label>
+</li>

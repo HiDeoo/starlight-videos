@@ -7,6 +7,24 @@ video:
   transcript: ./src/assets/transcripts/demo.srt
 ---
 
+## Quizzes
+
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+<Quiz title="What is the capital of France?">
+  <QuizOption>Lyon</QuizOption>
+  <QuizOption correct>Paris</QuizOption>
+  <QuizOption>Marseille</QuizOption>
+</Quiz>
+
+<Quiz title="What are the colors of the French flag?" variant="success" multiple>
+  <QuizOption correct>Blue</QuizOption>
+  <QuizOption>Yellow</QuizOption>
+  <QuizOption correct>Red</QuizOption>
+  <QuizOption>Green</QuizOption>
+  <QuizOption correct>White</QuizOption>
+</Quiz>
+
 ## List
 
 import { List } from 'starlight-videos/components'

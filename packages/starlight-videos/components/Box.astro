@@ -111,7 +111,7 @@ const { icon, title, variant = 'minimal' } = Astro.props
     margin: 0 !important;
   }
 
-  .sl-videos-box :global(label input[type='checkbox']) {
+  .sl-videos-box :global(label :is(input[type='checkbox'], input[type='radio'])) {
     accent-color: var(--sl-videos-box-alt-color);
     flex-shrink: 0;
     height: 1rem;
