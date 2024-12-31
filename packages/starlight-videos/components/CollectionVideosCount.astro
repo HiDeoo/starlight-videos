@@ -3,17 +3,18 @@ import { Icon } from '@astrojs/starlight/components'
 
 import type { CollectionVideoEntry } from '../libs/video'
 
-export interface Props {
-  as?: keyof HTMLElementTagNameMap
-  class?: string
+interface Props {
+  asFragment?: boolean
   collectionVideos: CollectionVideoEntry[]
   withIcon?: boolean
 }
 
-const { as: Element = 'div', class: className, collectionVideos, withIcon = true } = Astro.props
+const { asFragment = false, collectionVideos, withIcon = true } = Astro.props
+
+const Element = asFragment ? Fragment : 'div'
 ---
 
-<Element class:list={[className]}>
+<Element>
   {withIcon && <Icon name="list-format" size="1rem" />}
   {Astro.locals.t('starlightVideos.videos.count', { count: collectionVideos.length })}
 </Element>

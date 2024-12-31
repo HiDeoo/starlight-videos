@@ -6,11 +6,12 @@ import type { CollectionVideo, Video } from '../schemas'
 type Duration = (Video | CollectionVideo)['duration']
 
 interface Props {
+  asFragment?: boolean
   value: Duration | Duration[]
   withIcon?: boolean
 }
 
-const { value, withIcon = true } = Astro.props
+const { asFragment = false, value, withIcon = true } = Astro.props
 
 const durationInSeconds = Array.isArray(value) ? value.reduce((acc, duration) => acc + duration, 0) : value
 const durationInMinutes = Math.ceil(durationInSeconds / 60)
@@ -21,12 +22,14 @@ const durationKey =
   durationInHours > 0 ? 'starlightVideos.video.duration.hours' : 'starlightVideos.video.duration.minutes'
 const durationParams =
   durationInHours > 0 ? { count: durationInHours, minutes: remainingMinutes } : { count: durationInMinutes }
+
+const Element = asFragment ? Fragment : 'div'
 ---
 
-<div>
+<Element>
   <span class="sr-only">{Astro.locals.t('starlightVideos.video.duration')}</span>
   {withIcon && <Icon name="seti:clock" size="0.75rem" />}{Astro.locals.t(durationKey, durationParams)}
-</div>
+</Element>
 
 <style>
   div {
