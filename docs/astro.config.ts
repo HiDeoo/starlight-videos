@@ -5,17 +5,35 @@ import starlightVideos from 'starlight-videos'
 export default defineConfig({
   integrations: [
     starlight({
-      description: '// TODO(HiDeoo)',
-      locales: {
-        root: { label: 'English', lang: 'en' },
-        fr: { label: 'Français', lang: 'fr' },
-      },
+      description: 'Starlight plugin to quickly and easily enhance your documentation with video guides and courses.',
       editLink: {
         baseUrl: 'https://github.com/HiDeoo/starlight-videos/edit/main/docs/',
       },
       plugins: [starlightVideos()],
-      // TODO(HiDeoo)
-      // sidebar: [],
+      sidebar: [
+        {
+          label: 'Start Here',
+          items: ['getting-started'],
+        },
+        {
+          label: 'Content',
+          items: [
+            'content/video',
+            'content/videos',
+            'content/collection-video',
+            'content/collection',
+            'content/collections',
+          ],
+        },
+        {
+          label: 'Components',
+          items: [],
+        },
+        {
+          label: 'Demo',
+          items: [],
+        },
+      ],
       social: {
         blueSky: 'https://bsky.app/profile/hideoo.dev',
         github: 'https://github.com/HiDeoo/starlight-videos',

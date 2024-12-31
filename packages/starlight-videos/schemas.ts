@@ -2,10 +2,16 @@ import { z } from 'astro/zod'
 import { parse, toSeconds } from 'iso8601-duration'
 
 const baseVideoSchema = z.object({
-  // TODO(HiDeoo)
+  /**
+   * The link to the video to display in the video player.
+   */
   link: z.string().url(),
-  // TODO(HiDeoo)
-  // TODO(HiDeoo) in seconds or ISO 8601 duration
+  /**
+   * The duration of the video which can be a number of seconds or a string representing a duration in the ISO 8601
+   * format.
+   *
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Durations
+   */
   duration: z.union([z.number(), z.string()]).transform((value, context) => {
     if (typeof value === 'number') return value
 
@@ -19,22 +25,43 @@ const baseVideoSchema = z.object({
       return z.NEVER
     }
   }),
-  // TODO(HiDeoo)
+  /**
+   * The relative path from the root of the project to the transcript file of the video.
+   * The transcript file must be in the SubRip format (`.srt`).
+   *
+   * @see https://en.wikipedia.org/wiki/SubRip
+   */
   transcript: z.string().optional(),
-  // TODO(HiDeoo)
+  /**
+   * The difficulty level of the video.
+   */
   difficulty: z.string().optional(),
-  // TODO(HiDeoo)
+  /**
+   * Call-to-action links displayed below the video player.
+   */
   actions: z
     .object({
-      // TODO(HiDeoo)
+      /**
+       * The text displayed on the action link.
+       */
       text: z.string(),
-      // TODO(HiDeoo)
+      /**
+       * The URL that the action link points to.
+       */
       link: z.string(),
-      // TODO(HiDeoo)
+      /**
+       * The appearance of the action link.
+       */
       variant: z.enum(['primary', 'secondary', 'minimal']).default('primary'),
-      // TODO(HiDeoo)
+      /**
+       * The icon displayed in the action link.
+       *
+       * @see https://starlight.astro.build/reference/icons/#all-icons
+       */
       icon: z.string().optional(),
-      // TODO(HiDeoo)
+      /**
+       * The placement of the icon in relation to the action link text.
+       */
       iconPlacement: z.enum(['start', 'end']).default('start'),
     })
     .array()
@@ -42,12 +69,19 @@ const baseVideoSchema = z.object({
 })
 
 const videoDefinitionSchema = baseVideoSchema.extend({
-  // TODO(HiDeoo)
+  /**
+   * Defines the type of video content which represents a single video.
+   */
   type: z.literal('video'),
-  // TODO(HiDeoo)
-  // TODO(HiDeoo) mention fallback
+  /**
+   * A short description of the video content.
+   * When not provided, the Starlight `description` frontmatter field will be used as a fallback if available.
+   */
   description: z.string().optional(),
-  // TODO(HiDeoo)
+  /**
+   * The publication date of the video.
+   * In videos pages, videos will be sorted by publication date and then by title.
+   */
   date: z.date().optional(),
 })
 

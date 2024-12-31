@@ -1,19 +1,92 @@
 ---
-title: Update me
+title: Getting Started
+description: Learn how to quickly and easily enhance your documentation with video guides and courses using the Starlight Videos plugin.
 ---
 
-# test a
+A [Starlight](https://starlight.astro.build) plugin to quickly and easily enhance your documentation with video guides and courses.
 
-- test 1
-- test 2
-- test 3
+// TODO(HiDeoo) features
 
-plop
+// TODO(HiDeoo) disclaimer (early and youtube only)
 
-1. test 1
-2. test 2
-3. test 3
+// TODO(HiDeoo) links
+Check out the [demo guides](/blog/) and [demo courses](/blog/) pages for a preview of the plugin.
 
-# test b
+## Prerequisites
 
-This is a video (not in a collection).
+You will need to have a Starlight website set up.
+If you don't have one yet, you can follow the ["Getting Started"](https://starlight.astro.build/getting-started) guide in the Starlight docs to create one.
+
+## Installation
+
+import { Steps } from '@astrojs/starlight/components'
+import { PackageManagers } from '@hideoo/starlight-plugins-docs-components'
+
+// TODO(HiDeoo) put back steps
+
+{/* <Steps> */}
+
+1. Starlight Videos is a Starlight [plugin](https://starlight.astro.build/reference/plugins/). Install it using your favorite package manager:
+
+   <PackageManagers pkg="starlight-videos" />
+   <br />
+
+2. Configure the plugin in your Starlight [configuration](https://starlight.astro.build/reference/configuration/#plugins) in the `astro.config.mjs` file.
+
+   ```js title="astro.config.mjs" ins={4,9}
+   // @ts-check
+   import starlight from '@astrojs/starlight'
+   import { defineConfig } from 'astro/config'
+   import starlightVideos from 'starlight-videos'
+
+   export default defineConfig({
+     integrations: [
+       starlight({
+         plugins: [starlightVideos()],
+         title: 'My Docs',
+       }),
+     ],
+   })
+   ```
+
+3. Starlight Videos uses Astro’s [content collections](https://docs.astro.build/en/guides/content-collections/), which are configured in the `src/content.config.ts` file.
+
+   Update the content config file to add support for customizing documentation pages with videos using their frontmatter:
+
+   ```js title="src/content.config.ts" ins={4} ins="{ extend: videosSchema }"
+   import { docsLoader } from '@astrojs/starlight/loaders'
+   import { docsSchema } from '@astrojs/starlight/schema'
+   import { defineCollection } from 'astro:content'
+   import { videosSchema } from 'starlight-videos/schemas'
+
+   export const collections = {
+     docs: defineCollection({
+       loader: docsLoader(),
+       schema: docsSchema({ extend: videosSchema }),
+     }),
+   }
+   ```
+
+4. Create your first page containing a video by creating a new `.md` or `.mdx` file defining a `video` in the frontmatter:
+
+   ```md title="src/content/docs/videos/getting-started.md" {3-6}
+   ---
+   title: My first video
+   video:
+     type: video
+     link: https://www.youtube.com/watch?v=5u0Ds7wzUeI
+     duration: 180
+   ---
+
+   ## My first video
+
+   Welcome to my first video guide!
+   ```
+
+5. [Start the development server](https://starlight.astro.build/getting-started/#start-the-development-server) to preview your first video guide.
+
+{/* </Steps> */}
+
+The Starlight Videos plugin supports different types of content from a basic [video](/content/video/) like a guide to a more complex [collection](/content/collection/) of videos like a course.
+
+// TODO(HiDeoo) also link to components?
