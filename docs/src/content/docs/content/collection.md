@@ -1,6 +1,6 @@
 ---
 title: Collection
-description: // TODO(HiDeoo)
+description: Learn how to create a collection page to list all collection videos for a specific collection available in your project.
 ---
 
 A collection page list all [collection videos](/content/collection-video/) available in the project for a specific collection.

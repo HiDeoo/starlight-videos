@@ -1,6 +1,6 @@
 ---
 title: Collection Video
-description: // TODO(HiDeoo)
+description: Learn how to create a collection video page for a video belonging to a collection with a video player at the top of the page and additional content below it.
 ---
 
 A collection video page displays a video player at the top of the page with additional content below it.

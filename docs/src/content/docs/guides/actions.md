@@ -1,6 +1,6 @@
 ---
 title: Actions
-description: // TODO(HiDeoo)
+description: Learn how to add call-to-action links to related content, resources, or actions related to a video.
 ---
 
 Actions are visually distinct call-to-action links displayed below the video player.

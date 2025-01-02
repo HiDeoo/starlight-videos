@@ -1,6 +1,6 @@
 ---
 title: Videos
-description: // TODO(HiDeoo)
+description: Learn how to create a videos page to list all videos not part of a collection available in your project.
 ---
 
 A videos page list all [videos](/content/video/) available in the project and not part of a [collection](/content/collection/).

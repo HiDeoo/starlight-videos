@@ -1,6 +1,6 @@
 ---
 title: Collections
-description: // TODO(HiDeoo)
+description: Learn how to create a collections page to list all collections available in your project.
 ---
 
 A collections page list all [collections](/content/collection/) available in the project.
