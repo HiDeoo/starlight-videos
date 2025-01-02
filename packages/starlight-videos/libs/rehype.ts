@@ -4,9 +4,7 @@ import type { Plugin } from 'unified'
 import { CONTINUE, EXIT, SKIP, visit } from 'unist-util-visit'
 
 export const rehypeStarlightVideosTasks: Plugin<[], Root> = function () {
-  return (tree, file) => {
-    if (!file.data.astro?.frontmatter?.['video']) return
-
+  return (tree) => {
     visit(tree, 'element', (node) => {
       if (
         node.tagName !== 'li' ||

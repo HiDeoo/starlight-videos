@@ -27,8 +27,13 @@ export default defineConfig({
         },
         {
           label: 'Components',
-          items: [],
+          autogenerate: { directory: 'components' },
         },
+        {
+          label: 'Reference',
+          items: ['reference/actions'],
+        },
+        // TODO(HiDeoo) showcase
         {
           label: 'Demo',
           items: [],
