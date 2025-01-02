@@ -137,7 +137,9 @@ const collectionsDefinitionSchema = z.object({
 })
 
 export const videosSchema = z.object({
-  // TODO(HiDeoo)
+  /**
+   * The video content to display.
+   */
   video: z
     .discriminatedUnion('type', [
       videoDefinitionSchema,
