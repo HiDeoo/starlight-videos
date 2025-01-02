@@ -70,7 +70,7 @@ const baseVideoSchema = z.object({
 
 const videoDefinitionSchema = baseVideoSchema.extend({
   /**
-   * Defines the type of video content which represents a single video.
+   * Defines the type of video content which represents a video.
    */
   type: z.literal('video'),
   /**
@@ -86,33 +86,53 @@ const videoDefinitionSchema = baseVideoSchema.extend({
 })
 
 const collectionVideoDefinitionSchema = baseVideoSchema.extend({
-  // TODO(HiDeoo)
+  /**
+   * Defines the type of video content which represents a video in a collection.
+   */
   type: z.literal('collection-video'),
-  // TODO(HiDeoo)
+  /**
+   * The name of the collection the video belongs to which groups related videos together.
+   */
   collection: z.string(),
-  // TODO(HiDeoo)
+  /**
+   * The order of the video in the collection.
+   * In collection pages, videos will be sorted by order and then by title.
+   */
   order: z.number().optional(),
 })
 
 const collectionDefinitionSchema = z.object({
-  // TODO(HiDeoo)
+  /**
+   * Defines the type of video content which represents a collection of videos.
+   */
   type: z.literal('collection'),
-  // TODO(HiDeoo)
+  /**
+   * The name of the collection for which to display the collection videos.
+   */
   collection: z.string(),
-  // TODO(HiDeoo)
-  // TODO(HiDeoo) mention fallback
+  /**
+   * A short description of the collection.
+   * When not provided, the Starlight `description` frontmatter field will be used as a fallback if available.
+   */
   description: z.string().optional(),
-  // TODO(HiDeoo)
+  /**
+   * The publication date of the collection.
+   * In collections pages, collections will be sorted by publication date and then by title.
+   */
   date: z.date().optional(),
 })
 
 const videosDefinitionSchema = z.object({
-  // TODO(HiDeoo)
+  /**
+   * Defines the type of video content which represents a list of videos.
+   */
   type: z.literal('videos'),
 })
 
 const collectionsDefinitionSchema = z.object({
-  // TODO(HiDeoo)
+  /**
+   * Defines the type of video content which represents a list of collections.
+   */
   type: z.literal('collections'),
 })
 

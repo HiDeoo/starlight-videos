@@ -3,9 +3,8 @@ title: Video
 description: // TODO(HiDeoo)
 ---
 
-A video is the most basic type of content supported by the Starlight Videos plugin.
 A video page displays a video player at the top of the page with additional content below it.
-All videos can be listed in a [videos page](/content/videos/).
+All videos can be listed in a [videos page](/content/videos/) and are unrelated to each other contrary to [collection videos](/content/collection-video/).
 
 // TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
 
@@ -27,7 +26,7 @@ video:
 Welcome to my video guide!
 ```
 
-All the Markdown and MDX content will be displayed below the video player allowing you to provide additional information, instructions, examples, or any other content you want to share with your users.
+Any Markdown or MDX content will be displayed below the video player allowing you to provide additional information, instructions, examples, or any other content you want to share with your users.
 
 ## Frontmatter fields
 
@@ -130,102 +129,7 @@ video:
 
 ### `actions`
 
-**type:** [`StarlightVideosAction[]`](#action-configuration)
+**type:** [`StarlightVideosAction[]`](/reference/actions/)
 
 Optional call-to-action links displayed below the video player.
-Check the [“Action configuration”](#action-configuration) section for more information.
-
-## Action configuration
-
-Actions are visually distinct call-to-action links displayed below the video player.
-They can be used to link to related content, resources, or actions users can take after watching the video.
-
-The following example demonstrates how to add two actions to a video page, one to download the source code related to the video and another to open a documentation page.
-
-```md
----
-video:
-  actions:
-    - text: Download code
-      link: https://github.com/HiDeoo/starlight-videos
-    - text: Documentation
-      link: https://starlight.astro.build/
----
-```
-
-Actions are defined in the [`actions`](#actions) field of the `video` frontmatter and support the following fields:
-
-### `text`
-
-**required**  
-**type:** `string`
-
-The text displayed on the action link.
-
-```md
----
-video:
-  actions:
-    - text: Download code
----
-```
-
-### `link`
-
-**required**  
-**type:** `string`
-
-The URL that the action link points to.
-
-```md
----
-video:
-  actions:
-    - link: https://github.com/HiDeoo/starlight-videos
----
-```
-
-### `variant`
-
-**type:** `'primary' | 'secondary' | 'minimal'`  
-**default:** `'primary'`
-
-The appearance of the action link.
-Use `primary` for a prominent call-to-action link using the theme’s accent color, `secondary` for a less prominent link, or `minimal` for a link with minimal styling.
-
-```md
----
-video:
-  actions:
-    - variant: secondary
----
-```
-
-### `icon`
-
-**type:** `string`
-
-The optional icon to display in the action link which must be the name of one of [Starlight’s built-in icons](https://starlight.astro.build/reference/icons/#all-icons).
-
-```md
----
-video:
-  actions:
-    - icon: external
----
-```
-
-### `iconPlacement`
-
-**type:** `'start' | 'end'`  
-**default:** `'end'`
-
-The placement of the icon in relation to the action link text.
-
-```md
----
-video:
-  actions:
-    - iconPlacement: start
----
-```
+Check the [actions refernce](/reference/actions/) for more information.
