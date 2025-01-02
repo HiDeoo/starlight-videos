@@ -16,6 +16,10 @@ export default defineConfig({
           items: ['getting-started'],
         },
         {
+          label: 'Guides',
+          items: ['guides/actions', 'guides/i18n'],
+        },
+        {
           label: 'Content',
           items: [
             'content/video',
@@ -28,10 +32,6 @@ export default defineConfig({
         {
           label: 'Components',
           autogenerate: { directory: 'components' },
-        },
-        {
-          label: 'Reference',
-          items: ['reference/actions'],
         },
         {
           label: 'Resources',

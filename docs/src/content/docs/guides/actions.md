@@ -1,5 +1,5 @@
 ---
-title: Actions Reference
+title: Actions
 description: // TODO(HiDeoo)
 ---
 
