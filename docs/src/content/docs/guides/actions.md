@@ -7,7 +7,9 @@ Actions are visually distinct call-to-action links displayed below the video pla
 
 Actions can be defined in the frontmatter of a [video](/content/video/) or [collection video](/content/collection-video/) page to link to related content, resources, or actions users can take after watching the video.
 
-// TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
+:::tip[See it in action]
+Check out a [demo of a video page](/demo/video-guides/aliquam-sit-amet/) to get a preview of an action link to download the source code related to a video.
+:::
 
 ## Create actions
 

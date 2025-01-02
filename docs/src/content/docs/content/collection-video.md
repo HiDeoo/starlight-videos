@@ -6,7 +6,9 @@ description: // TODO(HiDeoo)
 A collection video page displays a video player at the top of the page with additional content below it.
 Collection videos are related to each other and are grouped in a [collection](/content/collection/).
 
-// TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
+:::tip[See it in action]
+Check out a [demo of a collection video page](/demo/video-courses/donec-eleifend/consectetur-at-quis/) to get a preview.
+:::
 
 ## Create a collection video page
 

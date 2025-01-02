@@ -5,7 +5,9 @@ description: // TODO(HiDeoo)
 
 A collection page list all [collection videos](/content/collection-video/) available in the project for a specific collection.
 
-// TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
+:::tip[See it in action]
+Check out a [demo of a collection page](/demo/video-courses/donec-eleifend/) to get a preview.
+:::
 
 ## Create a collection page
 

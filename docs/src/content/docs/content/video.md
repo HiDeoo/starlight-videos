@@ -6,7 +6,9 @@ description: // TODO(HiDeoo)
 A video page displays a video player at the top of the page with additional content below it.
 All videos can be listed in a [videos page](/content/videos/) and are unrelated to each other contrary to [collection videos](/content/collection-video/).
 
-// TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
+:::tip[See it in action]
+Check out a [demo of a video page](/demo/video-guides/aliquam-sit-amet/) to get a preview.
+:::
 
 ## Create a video page
 

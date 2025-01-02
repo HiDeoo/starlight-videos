@@ -5,7 +5,9 @@ description: // TODO(HiDeoo)
 
 A videos page list all [videos](/content/video/) available in the project and not part of a [collection](/content/collection/).
 
-// TODO(HiDeoo) Link to example in aside, e.g. "See it in action" in https://starlight.astro.build/getting-started/
+:::tip[See it in action]
+Check out a [demo of a videos page](/demo/video-guides/) to get a preview.
+:::
 
 ## Create a videos page
 
