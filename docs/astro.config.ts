@@ -33,7 +33,10 @@ export default defineConfig({
           label: 'Reference',
           items: ['reference/actions'],
         },
-        // TODO(HiDeoo) showcase
+        {
+          label: 'Resources',
+          items: [{ label: 'Plugins and Tools', slug: 'resources/starlight' }],
+        },
         {
           label: 'Demo',
           items: [],
