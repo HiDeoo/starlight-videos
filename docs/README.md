@@ -1,11 +1,6 @@
 <div align="center">
   <h1>starlight-videos 📽️</h1>
   <p>Starlight plugin to quickly and easily enhance your documentation with video guides and courses.</p>
-  <p>
-    <a href="https://i.imgur.com/RQVSxeK.png" title="Screenshot of starlight-videos">
-      <img alt="Screenshot of starlight-videos" src="https://i.imgur.com/RQVSxeK.png" width="520" />
-    </a>
-  </p>
 </div>
 
 <div align="center">
@@ -18,9 +13,13 @@
   <br />
 </div>
 
-## Getting Started
+## Documentation
 
-Want to get started immediately? Check out the [getting started guide](https://starlight-videos.netlify.app/getting-started/) or check out the [demo guides](https://starlight-videos.netlify.app/demo/video-guides/) and [demo courses](https://starlight-videos.netlify.app/demo/video-courses/) pages to see the plugin in action.
+Run the documentation locally using [pnpm](https://pnpm.io):
+
+```shell
+pnpm run dev
+```
 
 ## License
 
