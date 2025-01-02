@@ -22,12 +22,12 @@ const { value, variant } = Astro.props
 
   div.sl-videos-difficulty {
     align-self: flex-start;
+    border: 1px solid var(--sl-color-gray-2);
+    color: var(--sl-color-gray-2);
     display: inline-flex;
     font-size: var(--sl-text-sm);
     line-height: 1.1875;
     padding: 0.625rem 1.125rem;
-    border: 1px solid var(--sl-color-gray-2);
-    color: var(--sl-color-gray-2);
   }
 
   @media (min-width: 40rem) {
@@ -39,7 +39,6 @@ const { value, variant } = Astro.props
   @media (min-width: 50rem) {
     div.sl-videos-difficulty {
       font-size: var(--sl-text-base);
-      padding: 0.75rem 1.25rem;
     }
   }
 </style>
