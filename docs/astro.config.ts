@@ -39,7 +39,7 @@ export default defineConfig({
         },
         {
           label: 'Demo',
-          items: [],
+          items: ['demo/video-guides', 'demo/video-courses'],
         },
       ],
       social: {
