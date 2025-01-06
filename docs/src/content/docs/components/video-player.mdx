@@ -1,0 +1,55 @@
+---
+title: Video Player
+description: Learn how to manually embed a video in a page.
+---
+
+import { VideoPlayer } from 'starlight-videos/components'
+
+To manually embed a video in a page, use the `<VideoPlayer>` component.
+This can be useful to display an introduction video for a course in a [collection](/content/collection/) page for example.
+
+import Preview from '../../../components/Preview.astro'
+
+<Preview>
+
+<VideoPlayer slot="preview" link="https://www.youtube.com/watch?v=5u0Ds7wzUeI" />
+
+</Preview>
+
+## Import
+
+```tsx
+import { VideoPlayer } from 'starlight-videos/components'
+```
+
+## Usage
+
+Display a video using the `<VideoPlayer>` component and provide a [`link`](#link) attribute to the video URL.
+A manually embedded video can be useful to display an introduction video for a course in a [collection](/content/collection/) page.
+
+<Preview>
+
+```mdx
+import { VideoPlayer } from 'starlight-videos/components'
+
+<VideoPlayer link="https://www.youtube.com/watch?v=5u0Ds7wzUeI" />
+```
+
+<VideoPlayer slot="preview" link="https://www.youtube.com/watch?v=5u0Ds7wzUeI" />
+
+</Preview>
+
+## `<VideoPlayer>` Props
+
+The `<VideoPlayer>` component accepts the following props:
+
+### `link`
+
+**required**  
+**type:** `string`
+
+The link to the video to display in the video player.
+
+:::note
+Only YouTube videos are supported at the moment.
+:::

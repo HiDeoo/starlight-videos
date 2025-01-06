@@ -1,0 +1,47 @@
+{
+  "name": "starlight-videos-monorepo",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Starlight plugin to quickly and easily enhance your documentation with video guides and courses.",
+  "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
+  "type": "module",
+  "scripts": {
+    "lint": "astro check --noSync && pnpm -r lint",
+    "format": "prettier -w --cache --ignore-unknown .",
+    "version": "pnpm changeset version && pnpm i --no-frozen-lockfile"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.11",
+    "@hideoo/eslint-config": "^4.0.0",
+    "@hideoo/prettier-config": "^2.0.0",
+    "@hideoo/tsconfig": "^2.0.1",
+    "astro": "^5.1.1",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.15.1",
+  "private": true,
+  "sideEffects": false,
+  "keywords": [
+    "starlight",
+    "plugin",
+    "video",
+    "guide",
+    "course",
+    "documentation",
+    "astro"
+  ],
+  "homepage": "https://github.com/HiDeoo/starlight-videos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/starlight-videos.git"
+  },
+  "bugs": "https://github.com/HiDeoo/starlight-videos/issues"
+}

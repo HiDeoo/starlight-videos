@@ -1,0 +1,26 @@
+---
+import type { Props } from '@astrojs/starlight/props'
+
+import { getEntryPath } from '../libs/path'
+import { getVideos } from '../libs/video'
+
+import Card from './Card.astro'
+import CardGrid from './CardGrid.astro'
+import Difficulty from './Difficulty.astro'
+import Duration from './Duration.astro'
+
+const { locale } = Astro.props
+
+const videos = await getVideos(locale)
+---
+
+<CardGrid>
+  {
+    videos.map(({ data, data: { video }, id }) => (
+      <Card description={video.description ?? data.description} link={getEntryPath(id, locale)} title={data.title}>
+        {video.difficulty && <Difficulty value={video.difficulty} variant="minimal" />}
+        <Duration value={video.duration} />
+      </Card>
+    ))
+  }
+</CardGrid>

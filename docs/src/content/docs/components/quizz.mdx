@@ -1,0 +1,181 @@
+---
+title: Quizz
+description: Learn how to create quizzes related to a video.
+---
+
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+To create quizzes related to a video, use the `<Quiz>` component.
+
+import Preview from '../../../components/Preview.astro'
+
+<Preview>
+
+<Quiz slot="preview" title="Which framework is Starlight built on top of?">
+  <QuizOption>Nuxt</QuizOption>
+  <QuizOption correct>Astro</QuizOption>
+  <QuizOption>Next</QuizOption>
+</Quiz>
+
+</Preview>
+
+## Import
+
+```tsx
+import { Quiz, QuizOption } from 'starlight-videos/components'
+```
+
+## Usage
+
+Display a quiz related to a video using the `<Quiz>` and `<QuizOption>` components.
+The `<Quiz>` component requires a [`title`](#title) attribute to give context to the quiz and the `<QuizOption>` components to define the possible answers with the [`correct`](#correct) attribute to mark the correct answer.
+
+<Preview>
+
+```mdx
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+<Quiz title="Which framework is Starlight built on top of?">
+  <QuizOption>Nuxt</QuizOption>
+  <QuizOption correct>Astro</QuizOption>
+  <QuizOption>Next</QuizOption>
+</Quiz>
+```
+
+<Quiz slot="preview" title="Which framework is Starlight built on top of?">
+  <QuizOption>Nuxt</QuizOption>
+  <QuizOption correct>Astro</QuizOption>
+  <QuizOption>Next</QuizOption>
+</Quiz>
+
+</Preview>
+
+### Use multiple correct answers
+
+Use the `multiple` attribute on the `<Quiz>` component to allow multiple correct answers and mark them with the `correct` attribute on the `<QuizOption>` components.
+
+<Preview>
+
+```mdx
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+<Quiz title="Which content formats are supported in Starlight?" multiple>
+  <QuizOption>CSV</QuizOption>
+  <QuizOption correct>Mardown</QuizOption>
+  <QuizOption>Latex</QuizOption>
+  <QuizOption correct>MDX</QuizOption>
+</Quiz>
+```
+
+<Quiz slot="preview" title="Which content formats are supported in Starlight?" multiple>
+  <QuizOption>CSV</QuizOption>
+  <QuizOption correct>Mardown</QuizOption>
+  <QuizOption>Latex</QuizOption>
+  <QuizOption correct>MDX</QuizOption>
+</Quiz>
+
+</Preview>
+
+### Customize quizzes
+
+Customize the appearance of a quizz by using the [`variant`](#variant) attribute which can be set to `minimal` (the default), `caution`, `danger`, `note`, `success`, or `tip`.
+
+<Preview>
+
+```mdx /variant="\w+"/
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+<Quiz title="Do you have a cup of coffee or tea ready?" variant="caution">
+  <QuizOption correct>Yes</QuizOption>
+  <QuizOption>No</QuizOption>
+</Quiz>
+
+<Quiz title="What is a difficult thing to do?" variant="danger">
+  <QuizOption>Installing Starlight</QuizOption>
+  <QuizOption correct>Naming things</QuizOption>
+</Quiz>
+
+<Quiz title="Which framework is Starlight built on top of?" variant="note">
+  <QuizOption>Nuxt</QuizOption>
+  <QuizOption correct>Astro</QuizOption>
+  <QuizOption>Next</QuizOption>
+</Quiz>
+
+<Quiz title="Which language is Starlight written in?" variant="success">
+  <QuizOption correct>TypeScript</QuizOption>
+  <QuizOption>Python</QuizOption>
+</Quiz>
+
+<Quiz title="Should you use at least one aside block per page?" variant="tip">
+  <QuizOption correct>No</QuizOption>
+  <QuizOption>Yes</QuizOption>
+</Quiz>
+```
+
+<Fragment slot="preview">
+
+<Quiz title="Do you have a cup of coffee or tea ready?" variant="caution">
+  <QuizOption correct>Yes</QuizOption>
+  <QuizOption>No</QuizOption>
+</Quiz>
+
+<Quiz title="What is a difficult thing to do?" variant="danger">
+  <QuizOption>Installing Starlight</QuizOption>
+  <QuizOption correct>Naming things</QuizOption>
+</Quiz>
+
+<Quiz title="Which framework is Starlight built on top of?" variant="note">
+  <QuizOption>Nuxt</QuizOption>
+  <QuizOption correct>Astro</QuizOption>
+  <QuizOption>Next</QuizOption>
+</Quiz>
+
+<Quiz title="Which language is Starlight written in?" variant="success">
+  <QuizOption correct>TypeScript</QuizOption>
+  <QuizOption>Python</QuizOption>
+</Quiz>
+
+<Quiz title="Should you use at least one aside block per page?" variant="tip">
+  <QuizOption correct>No</QuizOption>
+  <QuizOption>Yes</QuizOption>
+</Quiz>
+
+</Fragment>
+
+</Preview>
+
+## `<Quiz>` Props
+
+The `<Quiz>` component accepts the following props:
+
+### `title`
+
+**required**  
+**type:** `string`
+
+The title of the quiz.
+
+### `multiple`
+
+**type:** `boolean`  
+**default:** `false`
+
+Allow multiple correct answers.
+
+### `variant`
+
+**type:** `'caution' | 'danger' | 'minimal' | 'note' | 'success' | 'tip'`  
+**default:** `'minimal'`
+
+The appearance of the quiz.
+
+## `<QuizOption>` Props
+
+The `<QuizOption>` component accepts the following props:
+
+### `correct`
+
+**type:** `boolean`  
+**default:** `false`
+
+Mark the answer as correct.

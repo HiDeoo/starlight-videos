@@ -1,0 +1,112 @@
+---
+import { LinkButton } from '@astrojs/starlight/components'
+import type { Props as StarlightProps } from '@astrojs/starlight/props'
+import type { ComponentProps } from 'astro/types'
+
+import type { CollectionVideo, Video } from '../schemas'
+import { VideoPlayer } from '../user-components'
+
+import Difficulty from './Difficulty.astro'
+import VideoCollectionVideos from './VideoCollectionVideos.astro'
+
+interface Props extends StarlightProps {
+  video: Video | CollectionVideo
+}
+
+const { video } = Astro.props
+const { actions = [] } = video
+---
+
+<div class="sl-videos-video">
+  <div
+    class:list={[
+      'sl-videos-video-player-wraper',
+      { 'sl-videos-video-player-collection': video.type === 'collection-video' },
+    ]}
+  >
+    <VideoPlayer link={video.link} />
+    {
+      video.type === 'collection-video' && (
+        <VideoCollectionVideos {...Astro.props} collectionVideo={video} variant="playlist" />
+      )
+    }
+  </div>
+  <div class="sl-videos-video-meta">
+    {video.difficulty && <Difficulty value={video.difficulty} />}
+    {
+      actions.length > 0 && (
+        <div class="sl-videos-video-meta-actions">
+          {actions.map((action) => (
+            <LinkButton
+              href={action.link}
+              icon={action.icon as ComponentProps<typeof LinkButton>['icon']}
+              iconPlacement={action.iconPlacement}
+              variant={action.variant}
+            >
+              {action.text}
+            </LinkButton>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .sl-videos-video {
+    background-attachment: red;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 50rem) {
+    .sl-videos-video-player-wraper.sl-videos-video-player-collection {
+      margin-right: var(--sl-videos-playlist-width);
+      position: relative;
+    }
+
+    .sl-videos-video-player-wraper.sl-videos-video-player-collection:has(
+        ul.sl-videos-collection-videos-playlist-folded
+      ) {
+      margin-right: 0;
+    }
+  }
+
+  .sl-videos-video-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sl-videos-video-meta-actions {
+    display: contents;
+  }
+
+  @media (min-width: 40rem) {
+    .sl-videos-video-meta {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .sl-videos-video-meta-actions {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .sl-videos-video-meta-actions :global(a) {
+    align-self: flex-start;
+  }
+
+  @media (min-width: 50rem) {
+    .sl-videos-video-meta-actions :global(a) {
+      padding-block: 0.625rem;
+    }
+
+    .sl-videos-video-meta-actions :global(a svg) {
+      font-size: 1.125rem;
+    }
+  }
+</style>

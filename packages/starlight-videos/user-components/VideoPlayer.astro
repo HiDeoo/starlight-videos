@@ -1,0 +1,22 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube'
+
+interface Props {
+  link: string
+}
+
+const { link } = Astro.props
+---
+
+<YouTube
+  class="sl-videos-video-player"
+  id={link}
+  playlabel={Astro.locals.t('starlightVideos.video.play')}
+  posterQuality="max"
+/>
+
+<style>
+  .sl-videos-video-player {
+    min-width: 100%;
+  }
+</style>

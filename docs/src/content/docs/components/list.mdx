@@ -1,0 +1,211 @@
+---
+title: List
+description: Learn how to style lists to display a list of prerequisites, tasks, or any other information related to a video.
+---
+
+import { List } from 'starlight-videos/components'
+
+To style lists to display a list of prerequisites, tasks, or any other information related to a video, use the `<List>` component.
+
+import Preview from '../../../components/Preview.astro'
+
+<Preview>
+
+<List slot="preview" title="Prerequisites">
+
+- [ ] Node.js
+- [ ] A code editor
+
+</List>
+
+</Preview>
+
+## Import
+
+```tsx
+import { List } from 'starlight-videos/components'
+```
+
+## Usage
+
+Use the `<List>` component to display a list of prerequisites or tasks related to a video.
+
+Wrap `<List>` around any standard Markdown list (unordered, ordered, or task) and provide at least a [`title`](#title) attribute to give context to the list.
+
+All the usual Markdown syntax is applicable inside the `<List>` component.
+
+<Preview>
+
+```mdx
+import { List } from 'starlight-videos/components'
+
+<List title="Prerequisites">
+
+- [ ] Node.js
+- [ ] A code editor
+
+</List>
+
+<List title="What did you learn?">
+
+- How to install Starlight
+- How to create an amazing documentation
+
+</List>
+```
+
+<Fragment slot="preview">
+
+<List title="Prerequisites">
+
+- [ ] Node.js
+- [ ] A code editor
+
+</List>
+
+<List title="What did you learn?">
+
+- How to install Starlight
+- How to create an amazing documentation
+
+</List>
+
+</Fragment>
+
+</Preview>
+
+### Use a custom icon
+
+Use the [`icon`](#icon) attribute set to the name of [one of Starlight’s built-in icons](https://starlight.astro.build/reference/icons/#all-icons) to add a custom icon to the list.
+
+<Preview>
+
+```mdx "icon="open-book""
+import { List } from 'starlight-videos/components'
+
+<List title="Prerequisites" icon="open-book">
+
+- Node.js
+- A code editor
+
+</List>
+```
+
+<List slot="preview" title="Prerequisites" icon="open-book">
+
+- Node.js
+- A code editor
+
+</List>
+
+</Preview>
+
+### Customize lists
+
+Customize the appearance of a list by using the [`variant`](#variant) attribute which can be set to `minimal` (the default), `caution`, `danger`, `note`, `success`, or `tip`.
+
+<Preview>
+
+```mdx /variant="\w+"/
+import { List } from 'starlight-videos/components'
+
+<List title="Before you start" variant="caution">
+
+- Make sure to have 5 minutes of free time
+- Have a cup of coffee or tea ready
+
+</List>
+
+<List title="Heads up" variant="danger">
+
+- Cache invalidation is hard
+- Naming things is hard
+
+</List>
+
+<List title="Prerequisites" variant="note">
+
+- Node.js
+- A code editor
+
+</List>
+
+<List title="What did you learn?" variant="success">
+
+- How to install Starlight
+- How to create an amazing documentation
+
+</List>
+
+<List title="Something to remember" variant="tip">
+
+- Avoid using too many aside blocks
+- Keep your content concise
+
+</List>
+```
+
+<Fragment slot="preview">
+
+<List title="Before you start" variant="caution">
+
+- Make sure to have 5 minutes of free time
+- Have a cup of coffee or tea ready
+
+</List>
+
+<List title="Heads up" variant="danger">
+
+- Cache invalidation is hard
+- Naming things is hard
+
+</List>
+
+<List title="Prerequisites" variant="note">
+
+- Node.js
+- A code editor
+
+</List>
+
+<List title="What did you learn?" variant="success">
+
+- How to install Starlight
+- How to create an amazing documentation
+
+</List>
+
+<List title="Something to remember" variant="tip">
+
+- Avoid using too many aside blocks
+- Keep your content concise
+
+</List>
+
+</Fragment>
+
+</Preview>
+
+## `<List>` Props
+
+The `<List>` component accepts the following props:
+
+### `title`
+
+**required**  
+**type:** `string`
+
+The title of the list to provide context to the list items.
+
+### `variant`
+
+**type:** `'caution' | 'danger' | 'minimal' | 'note' | 'success' | 'tip'`  
+**default:** `'minimal'`
+
+The appearance of the list.
+
+### `icon`
+
+**type:** `string`
+
+The icon to display at the beginning of the list set to the name of [one of Starlight’s built-in icons](https://starlight.astro.build/reference/icons/#all-icons).

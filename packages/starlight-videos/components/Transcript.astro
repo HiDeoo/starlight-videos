@@ -1,0 +1,68 @@
+---
+import fs from 'node:fs/promises'
+
+import type { Props as StarlightProps } from '@astrojs/starlight/props'
+import { AstroError } from 'astro/errors'
+import SrtParser from 'srt-parser-2'
+import starlightProject from 'virtual:starlight/project-context'
+
+import type { CollectionVideo, Video } from '../schemas'
+
+interface Props extends StarlightProps {
+  video: Video | CollectionVideo
+}
+
+const { entry, video } = Astro.props
+
+let transcript: ReturnType<SrtParser['fromSrt']> = []
+
+if (video.transcript) {
+  const url = new URL(video.transcript, starlightProject.root)
+  let content: Buffer
+  try {
+    content = await fs.readFile(url, 'utf-8')
+  } catch {
+    throw new AstroError(
+      `Failed to read transcript file from \`${url.pathname}\`.`,
+      `Make sure the transcript file path provided in the video entry frontmatter is correct.
+
+- Entry: \`${entry.filePath}\`
+- Transcript: \`${video.transcript}\`
+
+If you believe this is a bug, please file an issue at https://github.com/HiDeoo/starlight-videos/issues/new/choose`,
+    )
+  }
+  transcript = new SrtParser().fromSrt(content.toString())
+}
+
+function formatStartTime(startTime: string) {
+  startTime = startTime.replace(/,\d+$/, '')
+  const segments = startTime.split(':')
+  const time = [segments.at(1), segments.at(2)]
+  if (segments.at(0) !== '00') time.unshift(segments.at(0))
+  return time.join(':')
+}
+---
+
+{
+  transcript.length > 0 && (
+    <>
+      <h2>{Astro.locals.t('starlightVideos.video.transcript')}</h2>
+      <blockquote>
+        {transcript.map((sub) => {
+          return (
+            <p>
+              <code>{formatStartTime(sub.startTime)}</code>&nbsp;{sub.text}
+            </p>
+          )
+        })}
+      </blockquote>
+    </>
+  )
+}
+
+<style>
+  code {
+    margin-inline-end: 0.25rem;
+  }
+</style>

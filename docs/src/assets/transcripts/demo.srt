@@ -1,0 +1,129 @@
+1
+00:00:01,600 --> 00:00:05,940
+Hi! We're excited to share Starlight today —
+a documentation theme and website builder  
+
+2
+00:00:05,940 --> 00:00:06,834
+from the team at Astro.
+
+3
+00:00:06,834 --> 00:00:09,717
+It takes time to make a high 
+performance, accessible website 
+
+4
+00:00:09,717 --> 00:00:13,617
+that your users find easy to navigate,  
+but Starlight aims to make that easy for you.
+
+5
+00:00:13,617 --> 00:00:16,434
+Bring your content in 
+Markdown, MDX or Markdoc format 
+
+6
+00:00:16,434 --> 00:00:18,417
+and we'll make it possible 
+to get started in minutes. 
+
+7
+00:00:19,200 --> 00:00:20,567
+Let's take a look at what's included.
+
+8
+00:00:21,167 --> 00:00:24,050
+We've got color theming — dark and light mode —   
+
+9
+00:00:24,050 --> 00:00:28,500
+full internationalization support —
+change languages and see the UI change with it, 
+
+10
+00:00:28,500 --> 00:00:32,517
+so just bring your multilingual content, 
+Starlight takes care of the rest.
+
+11
+00:00:33,950 --> 00:00:36,900
+Site search is crucial for 
+a documentation website: 
+
+12
+00:00:36,900 --> 00:00:39,350
+users need to be able to find 
+what they're looking for. 
+
+13
+00:00:39,350 --> 00:00:41,517
+With Starlight, it's built in.
+
+14
+00:00:41,517 --> 00:00:46,317
+Deploy your site, search for what 
+you're looking for, and find it.
+
+15
+00:00:47,034 --> 00:00:50,567
+Built-in components as well as bringing your 
+own components is all supported.
+
+16
+00:00:51,650 --> 00:00:55,317
+Use components from React, Preact, 
+Svelte, Vue, Solid, Lit, and Alpine. 
+
+17
+00:00:55,317 --> 00:00:58,250
+Thanks to being built on Astro, 
+Starlight supports all of this.
+
+18
+00:01:00,541 --> 00:01:01,734
+If you need to customize the theme, 
+
+19
+00:01:01,734 --> 00:01:04,200
+we have a color theme editor 
+to help you get started. 
+
+20
+00:01:05,817 --> 00:01:10,550
+Try some random values for inspiration,
+pick one of our built-in themes, 
+
+21
+00:01:10,550 --> 00:01:13,800
+or adjust to match your brand colors.
+When you're ready, 
+
+22
+00:01:14,334 --> 00:01:17,100
+copy some code into your 
+project and you're good to go.
+
+23
+00:01:18,300 --> 00:01:20,267
+We're really excited to share Starlight with you.  
+
+24
+00:01:20,267 --> 00:01:22,850
+We’ve worked hard to make 
+this a high performance,   
+
+25
+00:01:22,860 --> 00:01:26,450
+accessible solution for your docs,
+so whether you need small site for  
+
+26
+00:01:26,450 --> 00:01:28,917
+your next weekend project
+or are documenting a  
+
+27
+00:01:28,917 --> 00:01:31,667
+mature product for your customers,
+we hope you give Starlight a try.
+

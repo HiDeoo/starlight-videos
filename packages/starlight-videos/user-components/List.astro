@@ -1,0 +1,13 @@
+---
+import type { ComponentProps } from 'astro/types'
+
+import Box from '../components/Box.astro'
+
+type Props = ComponentProps<typeof Box>
+
+const { icon, title, variant = 'minimal' } = Astro.props
+---
+
+<Box {icon} {title} {variant}>
+  <slot />
+</Box>

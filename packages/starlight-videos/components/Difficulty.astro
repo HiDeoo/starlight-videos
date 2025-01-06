@@ -1,0 +1,44 @@
+---
+import type { CollectionVideo, Video } from '../schemas'
+
+interface Props {
+  value: (Video | CollectionVideo)['difficulty']
+  variant?: 'minimal'
+}
+
+const { value, variant } = Astro.props
+---
+
+<div class:list={[{ 'sl-videos-difficulty': variant !== 'minimal' }]}>
+  <span class="sr-only">{Astro.locals.t('starlightVideos.video.difficulty')}</span>
+  {value}
+</div>
+
+<style>
+  div {
+    align-items: center;
+    display: flex;
+  }
+
+  div.sl-videos-difficulty {
+    align-self: flex-start;
+    border: 1px solid var(--sl-color-gray-2);
+    color: var(--sl-color-gray-2);
+    display: inline-flex;
+    font-size: var(--sl-text-sm);
+    line-height: 1.1875;
+    padding: 0.625rem 1.125rem;
+  }
+
+  @media (min-width: 40rem) {
+    div.sl-videos-difficulty {
+      align-self: center;
+    }
+  }
+
+  @media (min-width: 50rem) {
+    div.sl-videos-difficulty {
+      font-size: var(--sl-text-base);
+    }
+  }
+</style>
