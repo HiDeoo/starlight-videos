@@ -35,8 +35,11 @@ export default function starlightVideosPlugin(): StarlightPlugin {
                   resolve: {
                     alias: [
                       {
-                        find: /^\..*\/Page\.astro$/,
+                        find: /^\.\.\/components\/Page\.astro$/,
                         replacement: fileURLToPath(new URL('overrides/Page.astro', import.meta.url)),
+                        customResolver(source, importer) {
+                          return importer?.endsWith('starlight/routes/common.astro') ? source : undefined
+                        },
                       },
                     ],
                   },
