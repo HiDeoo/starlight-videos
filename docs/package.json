@@ -14,7 +14,7 @@
     "lint": "eslint . --cache --max-warnings=0"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.30.3",
+    "@astrojs/starlight": "^0.30.5",
     "@hideoo/starlight-plugins-docs-components": "^0.3.0",
     "astro": "^5.1.1",
     "sharp": "^0.33.5",
