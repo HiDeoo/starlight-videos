@@ -16,7 +16,7 @@
   "dependencies": {
     "@astrojs/starlight": "^0.30.5",
     "@hideoo/starlight-plugins-docs-components": "^0.3.0",
-    "astro": "^5.1.1",
+    "astro": "^5.1.4",
     "sharp": "^0.33.5",
     "starlight-links-validator": "^0.14.1",
     "starlight-videos": "workspace:*"
