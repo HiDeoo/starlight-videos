@@ -11,13 +11,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint . --cache --max-warnings=0"
+    "lint": "eslint . --cache --max-warnings=0",
+    "linkcheck": "CHECK_LINKS=true pnpm build"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.30.5",
     "@hideoo/starlight-plugins-docs-components": "^0.3.0",
-    "astro": "^5.1.1",
+    "astro": "^5.1.4",
     "sharp": "^0.33.5",
+    "starlight-links-validator": "^0.14.1",
     "starlight-videos": "workspace:*"
   },
   "engines": {

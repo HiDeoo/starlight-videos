@@ -1,5 +1,6 @@
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
+import starlightLinksValidator from 'starlight-links-validator'
 import starlightVideos from 'starlight-videos'
 
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/HiDeoo/starlight-videos/edit/main/docs/',
       },
-      plugins: [starlightVideos()],
+      plugins: [starlightVideos(), ...(process.env['CHECK_LINKS'] ? [starlightLinksValidator()] : [])],
       sidebar: [
         {
           label: 'Start Here',
