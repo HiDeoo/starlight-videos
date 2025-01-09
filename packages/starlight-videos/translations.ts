@@ -29,4 +29,18 @@ export const Translations = {
     'starlightVideos.videos.count_one': '{{count}} vidéo',
     'starlightVideos.videos.count_other': '{{count}} vidéos',
   },
+  de: {
+    'starlightVideos.collection.playlist.toggle': 'Sichtbarkeit der Playlist umschalten',
+    'starlightVideos.quiz.correct': 'Richtig',
+    'starlightVideos.quiz.incorrect': 'Falsch',
+    'starlightVideos.quiz.submit': 'Abgeben',
+    'starlightVideos.video.difficulty': 'Schwierigkeitsgrad',
+    'starlightVideos.video.duration': 'Dauer',
+    'starlightVideos.video.duration.minutes': '{{count}} min',
+    'starlightVideos.video.duration.hours': '{{count}} h {{minutes}}',
+    'starlightVideos.video.play': 'Abspielen',
+    'starlightVideos.video.transcript': 'Transkript',
+    'starlightVideos.videos.count_one': '{{count}} Video',
+    'starlightVideos.videos.count_other': '{{count}} Videos',
+  },
 }
