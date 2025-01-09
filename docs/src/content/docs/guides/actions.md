@@ -28,7 +28,7 @@ video:
 
 ## Frontmatter fields
 
-Actions are defined in the [`actions`](#actions) field of the `video` frontmatter when the `type` is set to [`video`](/content/video/) or [`collection-video`](/content/collection-video/) and support the following fields:
+Actions are defined in the [`actions`](#create-actions) field of the `video` frontmatter when the `type` is set to [`video`](/content/video/) or [`collection-video`](/content/collection-video/) and support the following fields:
 
 ### `text`
 
