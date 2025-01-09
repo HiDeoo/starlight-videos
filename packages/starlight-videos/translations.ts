@@ -33,7 +33,7 @@ export const Translations = {
     'starlightVideos.collection.playlist.toggle': 'Sichtbarkeit der Playlist umschalten',
     'starlightVideos.quiz.correct': 'Richtig',
     'starlightVideos.quiz.incorrect': 'Falsch',
-    'starlightVideos.quiz.submit': 'Senden',
+    'starlightVideos.quiz.submit': 'Abgeben',
     'starlightVideos.video.difficulty': 'Schwierigkeitsgrad',
     'starlightVideos.video.duration': 'Dauer',
     'starlightVideos.video.duration.minutes': '{{count}} min',
