@@ -39,3 +39,25 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+  links:
+    name: Check for broken links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version: 18
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check links
+        run: pnpm linkcheck
+        working-directory: docs

@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint . --cache --max-warnings=0"
+    "lint": "eslint . --cache --max-warnings=0",
+    "linkcheck": "CHECK_LINKS=true pnpm build"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.30.5",
