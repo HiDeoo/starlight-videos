@@ -1,5 +1,4 @@
 ---
-import type { Props as StarlightProps } from '@astrojs/starlight/props'
 import type { ComponentProps } from 'astro/types'
 
 import { getCollectionFromCollectionVideo, getCollectionVideos } from '../libs/video'
@@ -7,14 +6,15 @@ import type { CollectionVideo } from '../schemas'
 
 import CollectionVideos from './CollectionVideos.astro'
 
-interface Props extends StarlightProps {
+interface Props {
   collectionVideo: CollectionVideo
   variant?: ComponentProps<typeof CollectionVideos>['variant']
 }
 
-const { collectionVideo, locale, variant } = Astro.props
+const { locale } = Astro.locals.starlightRoute
+const { collectionVideo, variant } = Astro.props
 
 const collectionVideos = await getCollectionVideos(getCollectionFromCollectionVideo(collectionVideo), locale)
 ---
 
-<CollectionVideos {...Astro.props} collectionVideos={collectionVideos} {variant} />
+<CollectionVideos collectionVideos={collectionVideos} {variant} />

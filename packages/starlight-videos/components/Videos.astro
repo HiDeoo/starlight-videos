@@ -1,6 +1,4 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
-
 import { getEntryPath } from '../libs/path'
 import { getVideos } from '../libs/video'
 
@@ -9,7 +7,7 @@ import CardGrid from './CardGrid.astro'
 import Difficulty from './Difficulty.astro'
 import Duration from './Duration.astro'
 
-const { locale } = Astro.props
+const { locale } = Astro.locals.starlightRoute
 
 const videos = await getVideos(locale)
 ---

@@ -1,6 +1,5 @@
 ---
 import { LinkButton } from '@astrojs/starlight/components'
-import type { Props as StarlightProps } from '@astrojs/starlight/props'
 import type { ComponentProps } from 'astro/types'
 
 import type { CollectionVideo, Video } from '../schemas'
@@ -9,7 +8,7 @@ import { VideoPlayer } from '../user-components'
 import Difficulty from './Difficulty.astro'
 import VideoCollectionVideos from './VideoCollectionVideos.astro'
 
-interface Props extends StarlightProps {
+interface Props {
   video: Video | CollectionVideo
 }
 
@@ -25,11 +24,7 @@ const { actions = [] } = video
     ]}
   >
     <VideoPlayer link={video.link} />
-    {
-      video.type === 'collection-video' && (
-        <VideoCollectionVideos {...Astro.props} collectionVideo={video} variant="playlist" />
-      )
-    }
+    {video.type === 'collection-video' && <VideoCollectionVideos collectionVideo={video} variant="playlist" />}
   </div>
   <div class="sl-videos-video-meta">
     {video.difficulty && <Difficulty value={video.difficulty} />}

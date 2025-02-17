@@ -1,6 +1,5 @@
 ---
 import { Icon } from '@astrojs/starlight/components'
-import type { Props as StarlightProps } from '@astrojs/starlight/props'
 import type { HTMLAttributes } from 'astro/types'
 
 import { getEntryPath, stripTrailingSlash } from '../libs/path'
@@ -8,12 +7,13 @@ import type { CollectionVideoEntry } from '../libs/video'
 
 import Duration from './Duration.astro'
 
-interface Props extends StarlightProps {
+interface Props {
   collectionVideos: CollectionVideoEntry[]
   variant?: 'playlist' | undefined
 }
 
-const { collectionVideos, locale, variant } = Astro.props
+const { locale } = Astro.locals.starlightRoute
+const { collectionVideos, variant } = Astro.props
 
 type LinkAttributes = HTMLAttributes<'a'>
 ---
