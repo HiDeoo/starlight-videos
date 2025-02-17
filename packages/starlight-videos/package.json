@@ -12,6 +12,7 @@
     "./components/FallbackContentNotice.astro": "./components/starlight/FallbackContentNotice.astro",
     "./components/MarkdownContent.astro": "./components/starlight/MarkdownContent.astro",
     "./components/PageTitle.astro": "./components/starlight/PageTitle.astro",
+    "./middleware": "./middleware.ts",
     "./overrides/DraftContentNotice.astro": "./overrides/DraftContentNotice.astro",
     "./overrides/FallbackContentNotice.astro": "./overrides/FallbackContentNotice.astro",
     "./overrides/MarkdownContent.astro": "./overrides/MarkdownContent.astro",
@@ -34,7 +35,7 @@
     "unified": "^11.0.5"
   },
   "peerDependencies": {
-    "@astrojs/starlight": ">=0.30.0"
+    "@astrojs/starlight": ">=0.32.0"
   },
   "engines": {
     "node": ">=18"

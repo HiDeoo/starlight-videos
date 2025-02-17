@@ -1,16 +1,14 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
-
 import { isEntryWithVideo } from '../../libs/video'
 import Video from '../Video.astro'
 
 import DraftContentNotice from './DraftContentNotice.astro'
 import FallbackContentNotice from './FallbackContentNotice.astro'
 
-const { entry, isFallback } = Astro.props
+const { entry, isFallback } = Astro.locals.starlightRoute
 ---
 
 {entry.data.draft && <DraftContentNotice {...Astro.props} />}
 {isFallback && <FallbackContentNotice {...Astro.props} />}
 
-{isEntryWithVideo(entry) && <Video {...Astro.props} video={entry.data.video} />}
+{isEntryWithVideo(entry) && <Video video={entry.data.video} />}

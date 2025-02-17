@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'node:url'
-
 import type { StarlightPlugin } from '@astrojs/starlight/types'
 
 import { rehypeStarlightVideosTasks } from './libs/rehype'
@@ -10,8 +8,11 @@ export default function starlightVideosPlugin(): StarlightPlugin {
   return {
     name: 'starlight-videos',
     hooks: {
-      setup({ addIntegration, config, injectTranslations, logger, updateConfig }) {
+      'i18n:setup'({ injectTranslations }) {
         injectTranslations(Translations)
+      },
+      'config:setup'({ addIntegration, addRouteMiddleware, config, logger, updateConfig }) {
+        addRouteMiddleware({ entrypoint: 'starlight-videos/middleware' })
 
         updateConfig({
           components: {
@@ -30,19 +31,6 @@ export default function starlightVideosPlugin(): StarlightPlugin {
               updateAstroConfig({
                 markdown: {
                   rehypePlugins: [[rehypeStarlightVideosTasks]],
-                },
-                vite: {
-                  resolve: {
-                    alias: [
-                      {
-                        find: /^\.\.\/components\/Page\.astro$/,
-                        replacement: fileURLToPath(new URL('overrides/Page.astro', import.meta.url)),
-                        customResolver(source, importer) {
-                          return importer?.endsWith('starlight/routes/common.astro') ? source : undefined
-                        },
-                      },
-                    ],
-                  },
                 },
               })
             },

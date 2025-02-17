@@ -1,18 +1,18 @@
 ---
 import fs from 'node:fs/promises'
 
-import type { Props as StarlightProps } from '@astrojs/starlight/props'
 import { AstroError } from 'astro/errors'
 import SrtParser from 'srt-parser-2'
 import starlightProject from 'virtual:starlight/project-context'
 
 import type { CollectionVideo, Video } from '../schemas'
 
-interface Props extends StarlightProps {
+interface Props {
   video: Video | CollectionVideo
 }
 
-const { entry, video } = Astro.props
+const { entry } = Astro.locals.starlightRoute
+const { video } = Astro.props
 
 let transcript: ReturnType<SrtParser['fromSrt']> = []
 

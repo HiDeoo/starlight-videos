@@ -1,6 +1,5 @@
 ---
 import MarkdownContent from '@astrojs/starlight/components/MarkdownContent.astro'
-import type { Props as StarlightProps } from '@astrojs/starlight/props'
 
 import { getCollectionVideos } from '../libs/video'
 import type { Collection } from '../schemas'
@@ -9,11 +8,12 @@ import CollectionVideos from './CollectionVideos.astro'
 import CollectionVideosCount from './CollectionVideosCount.astro'
 import Duration from './Duration.astro'
 
-interface Props extends StarlightProps {
+interface Props {
   collection: Collection
 }
 
-const { collection, locale } = Astro.props
+const { locale } = Astro.locals.starlightRoute
+const { collection } = Astro.props
 
 const collectionVideos = await getCollectionVideos(collection, locale)
 ---
