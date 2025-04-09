@@ -43,10 +43,18 @@ export default defineConfig({
           items: ['demo/video-guides', 'demo/video-courses'],
         },
       ],
-      social: {
-        blueSky: 'https://bsky.app/profile/hideoo.dev',
-        github: 'https://github.com/HiDeoo/starlight-videos',
-      },
+      social: [
+        {
+          icon: 'blueSky',
+          label: 'BlueSky',
+          href: 'https://bsky.app/profile/hideoo.dev',
+        },
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/HiDeoo/starlight-videos',
+        },
+      ],
       title: 'Starlight Videos',
     }),
   ],
