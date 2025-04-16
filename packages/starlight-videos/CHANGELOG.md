@@ -1,5 +1,19 @@
 # starlight-videos
 
+## 0.3.0
+
+### Minor Changes
+
+- [#15](https://github.com/HiDeoo/starlight-videos/pull/15) [`64b2f33`](https://github.com/HiDeoo/starlight-videos/commit/64b2f33e5e51d89499f113eb439024d242419c04) Thanks [@HiDeoo](https://github.com/HiDeoo)! - ⚠️ **BREAKING CHANGE:** The minimum supported version of Starlight is now version [`0.34.0`](https://github.com/withastro/starlight/releases/tag/%40astrojs%2Fstarlight%400.34.0).
+
+  Please use the `@astrojs/upgrade` command to upgrade your project:
+
+  ```sh
+  npx @astrojs/upgrade
+  ```
+
+- [#15](https://github.com/HiDeoo/starlight-videos/pull/15) [`64b2f33`](https://github.com/HiDeoo/starlight-videos/commit/64b2f33e5e51d89499f113eb439024d242419c04) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Adds a clickable anchor link to the "Transcript" heading which respects the Starlight [`markdown.headingLinksSection`](https://starlight.astro.build/reference/configuration/#headinglinks) configuration option when a transcript is available.
+
 ## 0.2.0
 
 ### Minor Changes
