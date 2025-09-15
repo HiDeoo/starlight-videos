@@ -45,7 +45,7 @@ export default defineConfig({
       ],
       social: [
         { href: 'https://bsky.app/profile/hideoo.dev', icon: 'blueSky', label: 'Bluesky' },
-        { href: 'https://github.com/HiDeoo/starlight-blog', icon: 'github', label: 'GitHub' },
+        { href: 'https://github.com/HiDeoo/starlight-videos', icon: 'github', label: 'GitHub' },
       ],
       title: 'Starlight Videos',
     }),
