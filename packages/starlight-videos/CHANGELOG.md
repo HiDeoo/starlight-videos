@@ -1,5 +1,11 @@
 # starlight-videos
 
+## 0.3.1
+
+### Patch Changes
+
+- [#19](https://github.com/HiDeoo/starlight-videos/pull/19) [`b214992`](https://github.com/HiDeoo/starlight-videos/commit/b2149924f6908541f07b3f7bb579bc2df6516064) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Setups trusted publishing using OpenID Connect (OIDC) authentication — no code changes.
+
 ## 0.3.0
 
 ### Minor Changes
