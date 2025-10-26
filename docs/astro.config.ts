@@ -3,6 +3,10 @@ import { defineConfig } from 'astro/config'
 import starlightLinksValidator from 'starlight-links-validator'
 import starlightVideos from 'starlight-videos'
 
+const site =
+  (process.env['CONTEXT'] === 'production' ? process.env['URL'] : process.env['DEPLOY_PRIME_URL']) ??
+  'https://starlight-videos.netlify.app/'
+
 export default defineConfig({
   integrations: [
     starlight({
@@ -10,6 +14,19 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/HiDeoo/starlight-videos/edit/main/docs/',
       },
+      head: [
+        {
+          tag: 'meta',
+          attrs: { property: 'og:image', content: new URL('og.jpg', site).href },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            property: 'og:image:alt',
+            content: 'Starlight plugin to quickly and easily enhance your documentation with video guides and courses.',
+          },
+        },
+      ],
       plugins: [starlightVideos(), ...(process.env['CHECK_LINKS'] ? [starlightLinksValidator()] : [])],
       sidebar: [
         {
@@ -50,5 +67,5 @@ export default defineConfig({
       title: 'Starlight Videos',
     }),
   ],
-  site: 'https://starlight-videos.netlify.app/',
+  site,
 })
