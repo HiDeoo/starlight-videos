@@ -1,5 +1,15 @@
 # starlight-videos
 
+## 0.4.0
+
+### Minor Changes
+
+- [#21](https://github.com/HiDeoo/starlight-videos/pull/21) [`2e5b1d7`](https://github.com/HiDeoo/starlight-videos/commit/2e5b1d7efe5c195a1fb2bcc4600d7759b0015d4d) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Adds support for Astro v6, drops support for Astro v5.
+
+  ⚠️ **BREAKING CHANGE:** The minimum supported version of Starlight is now `0.38.0`.
+
+  Please follow the [upgrade guide](https://github.com/withastro/starlight/releases/tag/%40astrojs%2Fstarlight%400.38.0) to update your project.
+
 ## 0.3.1
 
 ### Patch Changes
