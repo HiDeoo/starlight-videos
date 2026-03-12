@@ -17,7 +17,7 @@ export const rehypeStarlightVideosTasks: Plugin<[], Root> = function () {
         if (child.tagName !== 'input' || index === undefined || !parent) return CONTINUE
 
         const checkbox = parent.children.at(index)
-        if (!checkbox || checkbox.type !== 'element') return CONTINUE
+        if (checkbox?.type !== 'element') return CONTINUE
         checkbox.properties['disabled'] = false
 
         parent.children = [h('label', {}, checkbox, ...parent.children.slice(index + 1))]

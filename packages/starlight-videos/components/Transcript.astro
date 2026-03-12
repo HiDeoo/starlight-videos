@@ -20,7 +20,7 @@ let transcript: ReturnType<SrtParser['fromSrt']> = []
 
 if (video.transcript) {
   const url = new URL(video.transcript, starlightProject.root)
-  let content: Buffer
+  let content: string
   try {
     content = await fs.readFile(url, 'utf-8')
   } catch {
@@ -34,7 +34,7 @@ if (video.transcript) {
 If you believe this is a bug, please file an issue at https://github.com/HiDeoo/starlight-videos/issues/new/choose`,
     )
   }
-  transcript = new SrtParser().fromSrt(content.toString())
+  transcript = new SrtParser().fromSrt(content)
 }
 
 function formatStartTime(startTime: string) {
