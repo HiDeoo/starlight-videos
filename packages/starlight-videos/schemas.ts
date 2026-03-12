@@ -5,7 +5,7 @@ const baseVideoSchema = z.object({
   /**
    * The link to the video to display in the video player.
    */
-  link: z.string().url(),
+  link: z.url(),
   /**
    * The duration of the video which can be a number of seconds or a string representing a duration in the ISO 8601
    * format.
@@ -18,9 +18,10 @@ const baseVideoSchema = z.object({
     try {
       return toSeconds(parse(value))
     } catch {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
+      context.issues.push({
+        code: 'custom',
         message: 'Invalid duration format',
+        input: value,
       })
       return z.NEVER
     }

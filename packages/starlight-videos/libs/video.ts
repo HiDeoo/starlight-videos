@@ -11,12 +11,12 @@ const contentPath = `${starlightProject.srcDir.replace(starlightProject.root, ''
 
 export async function getVideos(locale: Locale): Promise<VideoEntry[]> {
   const anyVideoEntries = await getAnyVideoEntries(locale)
-  return anyVideoEntries.filter(isVideoEntry).sort((a, b) => orderByDateThenTitle(a, b, locale))
+  return anyVideoEntries.filter(isVideoEntry).toSorted((a, b) => orderByDateThenTitle(a, b, locale))
 }
 
 export async function getCollections(locale: Locale): Promise<CollectionEntry[]> {
   const anyVideoEntries = await getAnyVideoEntries(locale)
-  return anyVideoEntries.filter(isCollectionEntry).sort((a, b) => orderByDateThenTitle(a, b, locale))
+  return anyVideoEntries.filter(isCollectionEntry).toSorted((a, b) => orderByDateThenTitle(a, b, locale))
 }
 
 export async function getCollectionVideos(collection: Collection, locale: Locale): Promise<CollectionVideoEntry[]> {
@@ -25,7 +25,7 @@ export async function getCollectionVideos(collection: Collection, locale: Locale
     anyVideoEntries.filter(
       (entry) => isCollectionVideoEntry(entry) && entry.data.video.collection === collection.collection,
     ) as CollectionVideoEntry[]
-  ).sort((a, b) => orderByOrderThenTitle(a, b, locale))
+  ).toSorted((a, b) => orderByOrderThenTitle(a, b, locale))
 }
 
 export function getCollectionFromCollectionVideo(collectionVideo: CollectionVideo): Collection {
