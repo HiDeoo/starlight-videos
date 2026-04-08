@@ -133,4 +133,4 @@ video:
 **type:** [`StarlightVideosAction[]`](/guides/actions/)
 
 Optional call-to-action links displayed below the video player.
-Check the [actions refernce](/guides/actions/) for more information.
+Check the [actions reference](/guides/actions/) for more information.
