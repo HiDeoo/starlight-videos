@@ -1,6 +1,6 @@
 import type { StarlightPlugin } from '@astrojs/starlight/types'
 
-import { rehypeStarlightVideosTasks } from './libs/rehype'
+import { applyMarkdownPlugin } from './libs/processor'
 import { overrideStarlightComponent } from './libs/starlight'
 import { Translations } from './translations'
 
@@ -27,12 +27,8 @@ export default function starlightVideosPlugin(): StarlightPlugin {
         addIntegration({
           name: 'starlight-videos-integration',
           hooks: {
-            'astro:config:setup': ({ updateConfig: updateAstroConfig }) => {
-              updateAstroConfig({
-                markdown: {
-                  rehypePlugins: [[rehypeStarlightVideosTasks]],
-                },
-              })
+            'astro:config:setup': ({ config: astroConfig }) => {
+              applyMarkdownPlugin(astroConfig.markdown.processor)
             },
           },
         })

@@ -2,11 +2,11 @@
 import fs from 'node:fs/promises'
 
 import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro'
-import { AstroError } from 'astro/errors'
 import SrtParser from 'srt-parser-2'
 import starlightProject from 'virtual:starlight/project-context'
 import starlightConfig from 'virtual:starlight/user-config'
 
+import { throwPluginError } from '../libs/error'
 import type { CollectionVideo, Video } from '../schemas'
 
 interface Props {
@@ -24,14 +24,12 @@ if (video.transcript) {
   try {
     content = await fs.readFile(url, 'utf-8')
   } catch {
-    throw new AstroError(
+    throwPluginError(
       `Failed to read transcript file from \`${url.pathname}\`.`,
       `Make sure the transcript file path provided in the video entry frontmatter is correct.
 
 - Entry: \`${entry.filePath}\`
-- Transcript: \`${video.transcript}\`
-
-If you believe this is a bug, please file an issue at https://github.com/HiDeoo/starlight-videos/issues/new/choose`,
+- Transcript: \`${video.transcript}\``,
     )
   }
   transcript = new SrtParser().fromSrt(content)
