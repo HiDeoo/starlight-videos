@@ -1,5 +1,17 @@
 # starlight-videos
 
+## 0.5.0
+
+### Minor Changes
+
+- [#26](https://github.com/HiDeoo/starlight-videos/pull/26) [`ba1772c`](https://github.com/HiDeoo/starlight-videos/commit/ba1772cb774e2e7b73db4a4b08a165dafd0b34d7) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Adds support for Astro v7, drops support for Astro v6.
+
+  ⚠️ **BREAKING CHANGE:** The minimum supported version of Starlight is now `0.41.0`.
+
+  Please follow the [upgrade guide](https://github.com/withastro/starlight/releases/tag/%40astrojs%2Fstarlight%400.41.0) to update your project.
+
+- [#26](https://github.com/HiDeoo/starlight-videos/pull/26) [`ba1772c`](https://github.com/HiDeoo/starlight-videos/commit/ba1772cb774e2e7b73db4a4b08a165dafd0b34d7) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Adds support for the Sätteri Markdown processor.
+
 ## 0.4.0
 
 ### Minor Changes
