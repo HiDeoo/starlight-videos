@@ -4,28 +4,30 @@ import type { Plugin } from 'unified'
 import { CONTINUE, EXIT, SKIP, visit } from 'unist-util-visit'
 
 export const rehypeStarlightVideosTasks: Plugin<[], Root> = function () {
-  return (tree) => {
-    visit(tree, 'element', (node) => {
-      if (
-        node.tagName !== 'li' ||
-        !Array.isArray(node.properties['className']) ||
-        !node.properties['className'].includes('task-list-item')
-      )
-        return CONTINUE
+  return transformTasks
+}
 
-      visit(node, 'element', (child, index, parent) => {
-        if (child.tagName !== 'input' || index === undefined || !parent) return CONTINUE
+function transformTasks(tree: Root) {
+  visit(tree, 'element', (node) => {
+    if (
+      node.tagName !== 'li' ||
+      !Array.isArray(node.properties['className']) ||
+      !node.properties['className'].includes('task-list-item')
+    )
+      return CONTINUE
 
-        const checkbox = parent.children.at(index)
-        if (checkbox?.type !== 'element') return CONTINUE
-        checkbox.properties['disabled'] = false
+    visit(node, 'element', (child, index, parent) => {
+      if (!parent || index === undefined || child.tagName !== 'input') return CONTINUE
 
-        parent.children = [h('label', {}, checkbox, ...parent.children.slice(index + 1))]
+      const checkbox = parent.children.at(index)
+      if (checkbox?.type !== 'element') return CONTINUE
+      checkbox.properties['disabled'] = false
 
-        return EXIT
-      })
+      parent.children = [h('label', {}, checkbox, ...parent.children.slice(index + 1))]
 
-      return SKIP
+      return EXIT
     })
-  }
+
+    return SKIP
+  })
 }

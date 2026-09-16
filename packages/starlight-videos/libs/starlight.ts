@@ -6,7 +6,8 @@ export function overrideStarlightComponent(
   logger: AstroIntegrationLogger,
   component: keyof NonNullable<StarlightUserConfig['components']>,
 ) {
-  if (components?.[component]) {
+  const override = components?.[component]
+  if (override) {
     logger.warn(`It looks like you already have a \`${component}\` component override in your Starlight configuration.`)
     logger.warn(
       `To use \`starlight-videos\`, either remove your override or update it to render the content from \`starlight-videos/components/${component}.astro\`.`,

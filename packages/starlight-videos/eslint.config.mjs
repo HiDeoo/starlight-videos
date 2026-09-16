@@ -15,4 +15,10 @@ export default hideoo(
       '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
+  {
+    files: ['overrides/DraftContentNotice.astro', 'overrides/FallbackContentNotice.astro'],
+    rules: {
+      'unicorn/no-empty-file': 'off',
+    },
+  },
 )

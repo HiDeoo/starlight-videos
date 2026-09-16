@@ -95,7 +95,7 @@ async function getAnyVideoEntries(locale: Locale): Promise<AnyVideoEntry[]> {
     try {
       const localizedEntry = await getEntry('docs', getPathWithLocale(entry.id, locale))
       if (!localizedEntry) throw new Error('Unavailable localized entry.')
-      if (localizedEntry.data.draft === true) throw new Error('Draft localized entry.')
+      if (localizedEntry.data.draft) throw new Error('Draft localized entry.')
       if (!isAnyVideoEntry(localizedEntry)) throw new Error('Invalid localized entry.')
       // If the entry has a corresponding locale entry, it'll be collected automatically during the iteration.
     } catch {
