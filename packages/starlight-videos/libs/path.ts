@@ -22,15 +22,17 @@ export function getEntryPath(id: string, locale: Locale) {
 export function getPathWithLocale(path: string, locale: Locale): string {
   const pathLocale = getLocaleFromPath(path)
   if (pathLocale === locale) return path
-  locale = locale ?? ''
+  locale ??= ''
   if (pathLocale === path) return locale
-  if (pathLocale) return stripTrailingSlash(path.replace(`${pathLocale}/`, locale ? `${locale}/` : ''))
+  if (pathLocale) return stripTrailingSlash(path.replace(`${pathLocale}/`, () => (locale ? `${locale}/` : '')))
   return path ? `${stripTrailingSlash(locale)}/${stripLeadingSlash(path)}` : locale
 }
 
 export function getLocaleFromPath(path: string): Locale {
-  const baseSegment = path.split('/')[0]
-  return starlightConfig.locales && baseSegment && baseSegment in starlightConfig.locales ? baseSegment : undefined
+  const baseSegment = path.split('/', 1)[0]
+  return baseSegment && starlightConfig.locales && Object.hasOwn(starlightConfig.locales, baseSegment)
+    ? baseSegment
+    : undefined
 }
 
 export function stripLeadingSlash(path: string) {
